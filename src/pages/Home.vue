@@ -1,7 +1,6 @@
 <template>
   <div id="page-home">
-    <!-- TODO -->
-    <div id="title" />
+    <Title />
     <!--
     <Schedule />
     <Location />
@@ -15,12 +14,19 @@
 
 <script lang="ts">
 import { defineComponent } from "vue"
+import Title from "./home/Title.vue"
 
 export default defineComponent({
   name: "Home",
-  components: {}
+  components: {
+    Title
+  }
 })
 </script>
 
-<style>
+<style scoped>
+#page-home {
+  position: relative;
+  width: 100%;
+}
 </style>

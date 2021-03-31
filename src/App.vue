@@ -20,8 +20,20 @@ export default defineComponent({
 </script>
 
 <style>
-html, body, #app-pmo2021 {
+*, ::before, ::after {
   box-sizing: border-box;
+}
+
+html, body {
   margin: 0;
+  width: 100%;
+  color: #030000;
+  background-image: url("./assets/background.png");
+  background-repeat: repeat;
+}
+
+#app-pmo2021 {
+  position: relative;
+  width: 100%;
 }
 </style>
