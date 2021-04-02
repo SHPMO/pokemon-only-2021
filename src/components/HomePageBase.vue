@@ -99,7 +99,7 @@ h2 {
 
 @media only screen and (max-width: 1280px) {
   .title {
-    width: auto;
+    max-width: 400px;
   }
 
   h1 {
@@ -123,6 +123,7 @@ h2 {
   }
 
   .title {
+    width: auto;
     margin-top: 5vh;
   }
 

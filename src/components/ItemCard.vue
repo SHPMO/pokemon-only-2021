@@ -12,7 +12,10 @@
         <slot />
       </div>
       <div class="middle">
-        <div class="delimiter" :style="{ borderColor: themeColor }" />
+        <div class="delimiter" :style="{
+          // borderColor: themeColor
+          backgroundColor: themeColor
+        }" />
         <div v-if="helpText" class="help-text">{{ helpText }}</div>
       </div>
       <div v-if="time" class="time">{{ time }}</div>
@@ -53,6 +56,7 @@ export default defineComponent({
 .upper {
   display: flex;
   width: 100%;
+  justify-content: space-between;
 }
 
 .upper-right {
@@ -110,8 +114,9 @@ export default defineComponent({
 
 .delimiter {
   width: 22px;
-  height: 3px;
-  border: #3999d6 solid 2px;
+  height: 4px;
+  /*border: #3999d6 solid 2px;*/
+  background-color: #3999d6;
   flex: 0 1 auto;
 }
 

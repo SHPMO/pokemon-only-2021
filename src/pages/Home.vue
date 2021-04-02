@@ -7,8 +7,8 @@
     <Schedule />
     <Location />
     <Tickets />
-    <!--
     <Prizes />
+    <!--
     <Events />
     <Booths />
     -->
@@ -22,6 +22,7 @@ import Title from "./home/Title.vue"
 import Schedule from "./home/Schedule.vue"
 import Location from "./home/Location.vue"
 import Tickets from "./home/Tickets.vue"
+import Prizes from "./home/Prizes.vue"
 
 import { isLandscapeOrientation, scrollIntoView, setHash, setTitle } from "../utils/view"
 
@@ -34,7 +35,8 @@ export default defineComponent({
     Title,
     Schedule,
     Location,
-    Tickets
+    Tickets,
+    Prizes
   },
   data() {
     return {
