@@ -15,7 +15,7 @@ export const setHash = (name?: string | null, jump = false, smooth = true) => {
   const hash = name ? `#${ name }` : ""
   if (hash !== location.hash) {
     if (history.pushState) {
-      history.pushState(null, document.title, name ? hash : "#")
+      history.pushState(history.state, document.title, name ? hash : "#")
     } else {
       location.hash = hash
     }

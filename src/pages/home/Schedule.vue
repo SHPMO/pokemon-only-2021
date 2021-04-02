@@ -97,11 +97,7 @@ export default defineComponent({
   .schedule-list {
     width: 80%;
     flex-direction: column;
-  }
-
-  .schedule-item {
-    margin-left: auto;
-    margin-right: auto;
+    align-items: center;
   }
 
   .schedule-item:nth-child(odd),
@@ -112,7 +108,8 @@ export default defineComponent({
 
   .schedule-item:nth-child(odd) > .item-card,
   .schedule-item:nth-child(even) > .item-card {
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
   }
 }
 </style>
@@ -124,8 +121,6 @@ export default defineComponent({
 @media only screen and (max-width: 600px) {
   .schedule-item .item-card > div {
     min-width: 168px;
-    margin-left: auto;
-    margin-right: auto;
   }
 }
 </style>

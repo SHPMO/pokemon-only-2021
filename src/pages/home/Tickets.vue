@@ -1,5 +1,6 @@
 <template>
   <HomePageBase name="tickets" :title="{en: 'tickets', zh:'票务信息'}">
+    <!-- TODO: Update time and ticket images -->
     <div class="sale-time hide">
       <ItemCard number="00.00" name="00.00">
         售票开始时间
@@ -13,6 +14,7 @@
         <div class="ticket-item-main">
           <div class="ticket-image">
             <img src="../../assets/tickets/ticket-sample.png" alt="" />
+            <div class="ticket-content">含入场票*1 + 入场特典*1</div>
           </div>
           <div class="ticket-info">
             <div class="ticket-cards">
@@ -27,12 +29,12 @@
             </div>
           </div>
         </div>
-        <div class="ticket-content">含入场票*1 + 入场特典*1</div>
       </div>
       <div class="ticket-item ticket-stage">
         <div class="ticket-item-main">
           <div class="ticket-image">
             <img src="../../assets/tickets/ticket-sample.png" alt="" />
+            <div class="ticket-content">含入场票*1 + 入场特典*1 + 舞台区座位整理券*1</div>
           </div>
           <div class="ticket-info">
             <div class="ticket-cards">
@@ -46,12 +48,12 @@
             </div>
           </div>
         </div>
-        <div class="ticket-content">含入场票*1 + 入场特典*1 + 舞台区座位整理券*1</div>
       </div>
       <div class="ticket-item ticket-stage">
         <div class="ticket-item-main">
           <div class="ticket-image">
             <img src="../../assets/tickets/ticket-sample.png" alt="" />
+            <div class="ticket-content">含入场票*1 + 提前入场资格 + VIP入场特典 + 舞台区前两排固定座位整理券*1</div>
           </div>
           <div class="ticket-info">
             <div class="ticket-cards">
@@ -69,12 +71,12 @@
             </div>
           </div>
         </div>
-        <div class="ticket-content">含入场票*1 + 提前入场资格 + VIP入场特典 + 舞台区前两排固定座位整理券*1</div>
       </div>
       <div class="ticket-item ticket-stage">
         <div class="ticket-item-main">
           <div class="ticket-image">
             <img src="../../assets/tickets/ticket-sample.png" alt="" />
+            <div class="ticket-content">现场对战区比赛资格*1</div>
           </div>
           <div class="ticket-info">
             <div class="ticket-cards">
@@ -92,15 +94,21 @@
             </div>
           </div>
         </div>
-        <div class="ticket-content">现场对战区比赛资格*1</div>
       </div>
     </div>
     <ul class="notes">
       <li>需要参加对战区比赛的游客，请在购买门票的同时，将“<span class="red">加购对战券</span>”加入购物车并一起支付。</li>
-      <li>在收到票后，以《<span class="red">魔都 PMO2021 报名 + 昵称</span>》为邮件名，发送邮件到<span class="red">nebby@getdaze.org</span>。</li>
+      <li>在收到票后，以《<span class="red">魔都 PMO2021 报名 + 昵称</span>》为邮件名，发送邮件到 <span class="red">nebby@getdaze.org</span>。
+      </li>
       <li>邮件中需要包含：门票 ID 号 | 对战券 ID 号 | 门票 + 对战券照片 | 个人昵称 | 个人 QQ 号，以作为报名的验证和方便进行后期通知。</li>
-      <li>另外有少量普通入场票的实体店寄卖<span class="gray">（不设置舞台区入场票和VIP入场票）</span></li>
+      <li>另外有少量普通入场票的实体店寄卖<span class="gray">（不设置舞台区入场票和 VIP 入场票）</span></li>
     </ul>
+    <div class="place">
+      <ItemCard number="01" name="Metro" theme="red"
+                time="上海市黄浦区浙江中路 229 号">
+        地铁<span class="red">一号线</span>人民广场站<span><br v-if="width <= 768"></span>百米香榭 212 室 JE 卡牌
+      </ItemCard>
+    </div>
   </HomePageBase>
 </template>
 
@@ -112,6 +120,20 @@ export default {
   name: "Tickets",
   components: {
     ItemCard, HomePageBase
+  },
+  data() {
+    return { width: window.innerWidth }
+  },
+  methods: {
+    onResize() {
+      this.width = window.innerWidth
+    }
+  },
+  created() {
+    window.addEventListener("resize", this.onResize)
+  },
+  unmounted() {
+    window.removeEventListener("resize", this.onResize)
   }
 }
 </script>
@@ -148,8 +170,12 @@ export default {
   justify-content: space-between;
 }
 
-.ticket-image > img {
+.ticket-image {
   width: 672px;
+}
+
+.ticket-image > img {
+  width: 100%;
   height: auto;
 }
 
@@ -179,10 +205,6 @@ export default {
   margin-right: -12px;
 }
 
-.ticket-cards > .item-card {
-  width: 100%;
-}
-
 .ticket-cards > .item-card:nth-child(2) {
   flex-direction: row-reverse;
 }
@@ -194,11 +216,77 @@ export default {
   font-weight: bold;
 }
 
+.notes {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 32px;
+  width: 1200px;
+  list-style: none;
+  font-size: 15px;
+  padding: 0;
+}
+
+.notes > li::before {
+  display: inline-block;
+  content: "■";
+  transform: scale(0.4, 1);
+  color: #d31751;
+  padding-right: 6px;
+}
+
+.place {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 32px;
+  /*width: 1200px;*/
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.place > .item-card {
+  flex-direction: column;
+  align-items: center;
+}
+
+@media only screen and (max-width: 1240px) {
+  .ticket-list, .notes, .place {
+    width: 672px;
+  }
+
+  .ticket-item-main {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .ticket-info {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .ticket-link {
+    margin-left: 16px;
+  }
+
+  .ticket-image {
+    width: 100%;
+  }
+}
+
 @media only screen and (max-width: 768px) {
   .sale-time {
     margin-top: 45px;
     margin-left: auto;
     min-width: 450px;
+  }
+
+  .ticket-list, .notes, .place {
+    width: 80%;
+    min-width: 360px;
   }
 }
 
@@ -213,6 +301,15 @@ export default {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 21px;
+  }
+
+  .ticket-cards > .item-card:nth-child(2) {
+    margin-left: -60px;
+  }
+  /*.ticket-cards*/
+
+  .ticket-info {
+    /*flex-wrap: wrap;*/
   }
 }
 </style>
@@ -237,8 +334,12 @@ export default {
 }
 
 @media only screen and (max-width: 768px) {
-  .sale-time .item-card > div {
+  .sale-time > .item-card > div {
     width: 196px;
+  }
+
+  .place > .item-card .content {
+    height: 74px;
   }
 }
 

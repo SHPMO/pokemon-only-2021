@@ -37,6 +37,7 @@ export default defineComponent({
   position: relative;
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 100%;
   min-height: 100vh;
 }
@@ -56,8 +57,6 @@ export default defineComponent({
 .title {
   user-select: none;
   margin-top: 9.259vh;
-  margin-left: auto;
-  margin-right: auto;
   flex: 0 0 auto;
   width: 100%;
   max-width: 605px;
@@ -91,7 +90,11 @@ h2 {
 }
 
 .content {
+  width: 100%;
   flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 @media only screen and (max-width: 1280px) {
@@ -115,6 +118,10 @@ h2 {
 }
 
 @media only screen and (max-width: 768px) {
+  .home-page {
+    min-height: unset;
+  }
+
   .title {
     margin-top: 5vh;
   }
@@ -131,6 +138,10 @@ h2 {
   .zeros {
     font-size: 9px;
     margin-top: -4px;
+  }
+
+  .home-page::after {
+    margin-bottom: 64px;
   }
 }
 </style>

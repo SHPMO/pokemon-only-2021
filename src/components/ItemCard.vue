@@ -100,7 +100,8 @@ export default defineComponent({
 }
 
 .middle {
-  height: 44px;
+  margin-top: 12px;
+  height: 16px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -122,7 +123,8 @@ export default defineComponent({
   font-size: 15px;
   transform: scale(0.85, 1);
   transform-origin: top right;
-  margin-top: -4px;
+  margin-top: -2px;
+  margin-left: 12px;
   color: #b7b7b7;
 }
 
@@ -132,6 +134,7 @@ export default defineComponent({
   height: 25px;
   line-height: 25px;
   font-size: 22px;
+  margin-top: 12px;
   background: #000000;
   text-align: center;
   color: #ffffff;
@@ -169,7 +172,7 @@ export default defineComponent({
   }
 
   .middle {
-    height: 28px;
+    height: 16px;
   }
 
   .help-text {
@@ -184,6 +187,7 @@ export default defineComponent({
     line-height: 20px;
     font-size: 17px;
     width: 100%;
+    margin-top: 12px;
   }
 }
 </style>

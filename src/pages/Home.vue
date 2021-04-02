@@ -62,7 +62,7 @@ export default defineComponent({
         t *= 2
       }
       for (const anchor of anchors) {
-        if (anchor.getBoundingClientRect().top <= t) {
+        if (anchor?.getBoundingClientRect().top <= t) {
           const name = anchor.getAttribute("name")
           setHash(name)
           setTitle(anchor.getAttribute("title"))

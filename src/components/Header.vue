@@ -1,5 +1,5 @@
 <template>
-  <header id="header">
+  <header class="header">
     <div class="header-content">
       <div class="logo-container">
         <img class="logo-background" src="../assets/header/logo-background.png" alt="" />
@@ -70,7 +70,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-#header {
+.header {
   position: absolute;
   top: 0;
   left: 0;
@@ -163,7 +163,7 @@ export default defineComponent({
 }
 
 @media only screen and (max-width: 1280px) {
-  #header {
+  .header {
     height: 40px;
   }
 
@@ -203,7 +203,7 @@ export default defineComponent({
 }
 
 @media only screen and (max-width: 600px) {
-  #header {
+  .header {
     height: 12px;
   }
 

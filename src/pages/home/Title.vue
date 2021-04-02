@@ -1,5 +1,5 @@
 <template>
-  <div id="home-title">
+  <div class="home-title">
     <div class="background" />
     <div class="content">
       <img class="slogan" src="../../assets/title/slogan.png" alt="">
@@ -18,7 +18,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-#home-title {
+.home-title {
   width: 100%;
   user-select: none;
   position: relative;
@@ -81,13 +81,17 @@ export default defineComponent({
     url("../../assets/title/background.png");
   }
 
+  .home-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   .content {
     position: relative;
     width: 80%;
     padding-top: 22.794%;
     margin-top: -5%;
-    margin-left: auto;
-    margin-right: auto;
   }
 
   .slogan {

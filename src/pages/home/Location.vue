@@ -28,6 +28,9 @@ export default {
 
 <style scoped>
 .home-location {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-image: url("../../assets/location/background.png");
   background-repeat: no-repeat;
   background-size: 100% auto;
@@ -38,7 +41,7 @@ export default {
   background-image: url("../../assets/location/map-background.png");
   background-repeat: no-repeat;
   background-size: contain;
-  margin: 48px auto auto;
+  margin-top: 48px;
   width: 90.104%;
   padding-top: 38.75%;
   position: relative;
@@ -71,19 +74,30 @@ export default {
 
 .info {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 32px;
   width: 100%;
   max-width: 605px;
-  margin-top: 32px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
-@media only screen and (max-width: 768px) {
-  .info > .item-card {
-    margin-left: auto;
-    margin-right: auto;
-  }
+.info > .item-card {
+  flex-direction: column;
+  align-items: center;
 }
+
+/*@media only screen and (max-width: 1280px) {*/
+/*  .info > .item-card {*/
+/*    flex-direction: column;*/
+/*    align-items: center;*/
+/*  }*/
+/*}*/
+
+/*@media only screen and (max-width: 768px) {*/
+/*  .info {*/
+/*    align-items: center;*/
+/*  }*/
+/*}*/
 
 @media only screen and (max-width: 600px) {
   .map-container {
@@ -109,13 +123,6 @@ export default {
 }
 </style>
 <style>
-@media only screen and (max-width: 1280px) {
-  .info > .item-card > div {
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-
 @media only screen and (max-width: 768px) {
   .info > .item-card > div {
     width: 354px;
