@@ -4,7 +4,7 @@
       <div class="logo-container">
         <img class="logo-background" src="../assets/header/logo-background.png" alt="" />
         <router-link to="/#">
-          <img class="logo" src="../assets/logo.png" alt="">
+          <img class="logo" src="../assets/header/logo.png" alt="">
         </router-link>
       </div>
       <nav class="navs">

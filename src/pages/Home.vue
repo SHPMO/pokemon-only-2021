@@ -1,8 +1,9 @@
 <template>
   <div id="page-home">
-    <Title>
-      <div class="back-to-top" :class="{ fixed: fixBackToTop }" @click="backToTop" />
-    </Title>
+    <div class="back-to-top" :class="{ fullHeight: inFooter }">
+      <div :class="{ inTitle, inFooter }" @click="backToTop" />
+    </div>
+    <Title />
     <Schedule />
     <!--
     <Location />
@@ -32,7 +33,8 @@ export default defineComponent({
   },
   data() {
     return {
-      fixBackToTop: false
+      inTitle: false,
+      inFooter: false
     }
   },
   methods: {
@@ -45,7 +47,9 @@ export default defineComponent({
         anchors = anchors.reverse()
       }
       const currentTop = window.pageYOffset || document.documentElement.scrollTop
-      this.fixBackToTop = currentTop > 84 + window.innerHeight * 0.1
+      this.inTitle = currentTop <= (isLandscapeOrientation() ? 84 : 131) + window.innerHeight * 0.1
+      this.inFooter = document.documentElement.scrollHeight - currentTop - window.innerHeight * 0.9 + 42 < 196
+
       const goingDown = currentTop > previousTop
       previousTop = currentTop
       let t = window.innerHeight / 3
@@ -83,23 +87,45 @@ export default defineComponent({
 
 .back-to-top {
   position: absolute;
-  right: 10%;
-  bottom: -84px;
-  cursor: pointer;
-  background-image: url("../assets/home/top.png");
-  width: 95px;
-  height: 131px;
-  background-repeat: no-repeat;
-  z-index: 1;
+  width: 100%;
+  height: 100vh;
 }
 
-.fixed {
+.fullHeight {
+  height: 100%;
+}
+
+.back-to-top > div {
   position: fixed;
+  right: 10%;
   bottom: 10%;
+  cursor: pointer;
+  background-image: url("../assets/home/top.png");
+  width: 131px;
+  height: 131px;
+  background-repeat: no-repeat;
+  z-index: 2;
+}
+
+.back-to-top > div.inTitle {
+  position: absolute;
+  bottom: -84px;
+}
+
+.back-to-top > div.inFooter {
+  position: absolute;
+  bottom: -42px;
+}
+
+@media only screen and (orientation: portrait) {
+  .back-to-top > div.inTitle {
+    position: absolute;
+    bottom: -131px;
+  }
 }
 
 @media only screen and (max-width: 600px) {
-  #back-to-top {
+  .back-to-top {
     display: none;
   }
 }

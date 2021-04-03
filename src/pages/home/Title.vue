@@ -5,7 +5,6 @@
       <img class="slogan" src="../../assets/title/slogan.png" alt="">
       <img class="address" src="../../assets/title/address.png" alt="">
     </div>
-    <slot />
   </div>
 </template>
 
