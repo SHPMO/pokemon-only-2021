@@ -1,8 +1,6 @@
 <template>
   <div id="home-title">
-    <div class="background">
-      <div class="background-gradient" />
-    </div>
+    <div class="background" />
     <div class="content">
       <img class="slogan" src="../../assets/title/slogan.png" alt="">
       <img class="address" src="../../assets/title/address.png" alt="">
@@ -59,6 +57,14 @@ export default defineComponent({
   left: 7.031%
 }
 
+@media only screen and (orientation: landscape) {
+  .background {
+    height: 100vh;
+    padding-top: 0;
+    background-size: auto 100%;
+  }
+}
+
 @media only screen and (max-width: 600px) {
   .background {
     position: relative;
@@ -68,21 +74,6 @@ export default defineComponent({
       rgba(248, 248, 248, 0) 72.1%, rgba(248, 248, 248, 1)
     ),
     url("../../assets/title/background.png");
-  }
-
-  /*.background::after {*/
-  /*  content: "";*/
-  /*  position: absolute;*/
-  /*  bottom: 0;*/
-  /*  width: 100%;*/
-  /*  height: 27.9%;*/
-  /*  background: linear-gradient(*/
-  /*    to bottom,*/
-  /*    rgba(255, 255, 255, 1), rgba(255, 255, 255, 0)*/
-  /*  ),*/
-  /*  url("../../assets/background.png") repeat;*/
-  /*}*/
-  .background-gradient {
   }
 
   .content {

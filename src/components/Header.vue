@@ -10,40 +10,40 @@
       <nav class="navs">
         <ul>
           <li class="nav">
-            <a href="#schedule">
+            <Anchor target="schedule">
               <span class="nav-en">Schedule</span>
               <span class="nav-zh">当日行程</span>
-            </a>
+            </Anchor>
           </li>
           <li class="nav">
-            <a href="#location">
+            <Anchor target="location">
               <span class="nav-en">Location</span>
               <span class="nav-zh">场地信息</span>
-            </a>
+            </Anchor>
           </li>
           <li class="nav">
-            <a href="#tickets">
+            <Anchor target="tickets">
               <span class="nav-en">Tickets</span>
               <span class="nav-zh">票务信息</span>
-            </a>
+            </Anchor>
           </li>
           <li class="nav">
-            <a href="#prizes">
+            <Anchor target="prizes">
               <span class="nav-en">Prizes</span>
               <span class="nav-zh">活动奖品</span>
-            </a>
+            </Anchor>
           </li>
           <li class="nav">
-            <a href="#events">
+            <Anchor target="events">
               <span class="nav-en">Events</span>
               <span class="nav-zh">活动安排</span>
-            </a>
+            </Anchor>
           </li>
           <li class="nav">
-            <a href="#booths">
+            <Anchor target="booths">
               <span class="nav-en">Booths</span>
               <span class="nav-zh">现场摊位</span>
-            </a>
+            </Anchor>
           </li>
         </ul>
       </nav>
@@ -59,9 +59,13 @@
 <script lang="ts">
 import { defineComponent } from "vue"
 
+import Anchor from "./Anchor.vue"
+
 export default defineComponent({
   name: "Header",
-  components: {}
+  components: {
+    Anchor
+  },
 })
 </script>
 
@@ -151,6 +155,7 @@ export default defineComponent({
 .nav-en {
   color: #d31751;
   font-size: 10px;
+  letter-spacing: 1px;
 }
 
 .nav-zh {

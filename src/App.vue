@@ -24,12 +24,31 @@ export default defineComponent({
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: "Alata";
+  src: local("Alata"), url("./assets/fonts/Alata-Regular.ttf");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Noto Sans SC";
+  src: local("Noto Sans SC"), url("./assets/fonts/NotoSansHans-Regular.otf");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Noto Sans SC";
+  src: local("Noto Sans SC"), url("./assets/fonts/NotoSansHans-DemiLight.otf");
+  font-weight: lighter;
+}
+
 html, body {
   margin: 0;
   width: 100%;
   color: #030000;
   background-image: url("./assets/background.png");
   background-repeat: repeat;
+  font-family: "Alata", "Noto Sans SC", sans-serif;
 }
 
 #app-pmo2021 {
