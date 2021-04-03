@@ -5,6 +5,7 @@
       <img class="slogan" src="../../assets/title/slogan.png" alt="">
       <img class="address" src="../../assets/title/address.png" alt="">
     </div>
+    <slot />
   </div>
 </template>
 
@@ -70,8 +71,7 @@ export default defineComponent({
   }
 }
 
-@media only screen and (orientation: portrait),
-    only screen and (max-width: 600px) {
+@media only screen and (orientation: portrait), only screen and (max-width: 600px) {
   .background {
     position: relative;
     background-size: 105% auto;
@@ -105,6 +105,7 @@ export default defineComponent({
     left: 0;
   }
 }
+
 /* @media only screen and (max-width: 600px) {
 } */
 
