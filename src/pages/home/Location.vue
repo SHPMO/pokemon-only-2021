@@ -1,5 +1,5 @@
 <template>
-  <HomePageBase class="home-location" name="location" :title="{en: 'Location', zh:'场地信息'}">
+  <HomePageBase class="page-location" name="location" :title="{en: 'Location', zh:'场地信息'}">
     <div class="map-container">
       <a class="map" href="https://j.map.baidu.com/4e/gek" target="_blank">
         <img src="../../assets/location/map.png" alt="">
@@ -27,7 +27,7 @@ export default {
 </script>
 
 <style scoped>
-.home-location {
+.page-location {
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -84,7 +84,7 @@ h2 {
 .zeros {
   font-size: 18px;
   color: #040000;
-  letter-spacing: 4px;
+  letter-spacing: 8px;
   font-weight: lighter;
   margin: -8px 0 0;
 }
@@ -112,6 +112,7 @@ h2 {
   }
 
   .zeros {
+    letter-spacing: 6px;
     font-size: 12px;
     margin-top: -5px;
   }
@@ -137,6 +138,7 @@ h2 {
   }
 
   .zeros {
+    letter-spacing: 4px;
     font-size: 9px;
     margin-top: -4px;
   }

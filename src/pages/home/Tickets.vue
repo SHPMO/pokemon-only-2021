@@ -286,7 +286,7 @@ export default {
 
   .ticket-list, .notes, .place {
     width: 80%;
-    min-width: 360px;
+    min-width: 350px;
   }
 }
 
@@ -297,7 +297,7 @@ export default {
     flex-direction: column;
   }
 
-  .sale-time .item-card {
+  .sale-time > .item-card {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 21px;
@@ -306,10 +306,14 @@ export default {
   .ticket-cards > .item-card:nth-child(2) {
     margin-left: -60px;
   }
-  /*.ticket-cards*/
 
-  .ticket-info {
-    /*flex-wrap: wrap;*/
+  .ticket-link {
+    margin-left: auto;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .place > .item-card {
+    width: 100%;
   }
 }
 </style>

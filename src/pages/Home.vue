@@ -8,8 +8,8 @@
     <Location />
     <Tickets />
     <Prizes />
-    <!--
     <Events />
+    <!--
     <Booths />
     -->
   </div>
@@ -23,6 +23,7 @@ import Schedule from "./home/Schedule.vue"
 import Location from "./home/Location.vue"
 import Tickets from "./home/Tickets.vue"
 import Prizes from "./home/Prizes.vue"
+import Events from "./home/Events.vue"
 
 import { isLandscapeOrientation, scrollIntoView, setHash, setTitle } from "../utils/view"
 
@@ -36,7 +37,8 @@ export default defineComponent({
     Schedule,
     Location,
     Tickets,
-    Prizes
+    Prizes,
+    Events
   },
   data() {
     return {
@@ -46,7 +48,7 @@ export default defineComponent({
   },
   methods: {
     backToTop() {
-      setHash("", true, false)
+      setHash("", true)  // , false)
     },
     onScroll() {
       if (anchors === null || anchors.length < 1) {
@@ -108,7 +110,7 @@ export default defineComponent({
   bottom: 10%;
   cursor: pointer;
   background-image: url("../assets/home/top.png");
-  width: 131px;
+  width: 95px;
   height: 131px;
   background-repeat: no-repeat;
   z-index: 2;

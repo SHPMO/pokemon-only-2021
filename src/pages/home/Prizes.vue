@@ -78,6 +78,11 @@ export default defineComponent({
   width: 1703px;
 }
 
+.prize-empty {
+  margin: auto;
+  font-size: 2rem;
+}
+
 .prize-item {
   display: flex;
   margin-bottom: 64px;
