@@ -1,16 +1,18 @@
 <template>
   <div class="item-card">
     <div class="upper">
-      <div class="number">{{ number }}</div>
+      <div class="number" :style="{ color: themeColor }">{{ number }}</div>
       <div>
         <div class="zeros">#000</div>
         <div class="name">{{ name }}</div>
       </div>
     </div>
-    <div class="content"><slot /></div>
+    <div class="content">
+      <slot />
+    </div>
     <div class="middle">
-      <div class="delimiter" />
-      <div :v-if="helptext" class="helptext">{{ helptext }}</div>
+      <div class="delimiter" :style="{ borderColor: themeColor }" />
+      <div :v-if="helpText" class="helpText">{{ helpText }}</div>
     </div>
     <div :v-if="time" class="time">{{ time }}</div>
   </div>
@@ -24,8 +26,15 @@ export default defineComponent({
   props: {
     number: String,
     name: String,
-    helptext: String,
+    helpText: String,
     time: String,
+    theme: String
+  },
+  data() {
+    const theme = this.$props.theme
+    const themeColor = theme === undefined || theme === "blue"
+      ? "#3999d6" : theme === "red" ? "#d21651" : theme
+    return { themeColor }
   }
 })
 </script>
@@ -72,12 +81,13 @@ export default defineComponent({
 }
 
 .content {
+  margin-top: 14px;
   height: 42px;
   line-height: 42px;
   font-size: 44px;
   font-weight: bold;
   color: #020002;
-  transform: scale(0.80,1);
+  transform: scale(0.80, 1);
   transform-origin: left;
   white-space: nowrap;
 }
@@ -96,13 +106,13 @@ export default defineComponent({
   flex: 0 1 auto;
 }
 
-.helptext {
+.helpText {
   flex: 0 1 auto;
   display: block;
   height: 15px;
   line-height: 15px;
   font-size: 15px;
-  transform: scale(0.85,1);
+  transform: scale(0.85, 1);
   transform-origin: top right;
   margin-top: -4px;
   color: #b7b7b7;
@@ -117,5 +127,59 @@ export default defineComponent({
   background: #000000;
   text-align: center;
   color: #ffffff;
+}
+
+@media only screen and (max-width: 768px) { /* and (min-width: 601px) { */
+  .number {
+    width: 80px;
+    height: 46px;
+    line-height: 46px;
+    font-size: 48px;
+  }
+
+  .zeros {
+    margin-top: 7px;
+    height: 6px;
+    line-height: 6px;
+    font-size: 8px;
+    letter-spacing: 3px;
+  }
+
+  .name {
+    margin-top: 19px;
+    height: 12px;
+    line-height: 12px;
+    font-size: 16px;
+  }
+
+  .content {
+    margin-top: 11px;
+    height: 37px;
+    line-height: 37px;
+    font-size: 35px;
+  }
+
+  .middle {
+    height: 28px;
+  }
+
+  .helpText {
+    height: 12px;
+    line-height: 12px;
+    font-size: 12px;
+    margin-top: -4px;
+  }
+
+  .time {
+    height: 20px;
+    line-height: 20px;
+    font-size: 17px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .item-card {
+    min-width: 168px;
+  }
 }
 </style>

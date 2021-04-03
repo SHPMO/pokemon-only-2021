@@ -1,6 +1,6 @@
 <template>
   <div class="home-page">
-    <a class="anchor" :name="name"></a>
+    <a class="anchor" :name="name" :title="title.zh" />
     <div class="title">
       <h1>{{ title.en }}</h1>
       <h2>{{ title.zh }}</h2>
@@ -32,6 +32,7 @@ export default defineComponent({
 
 <style scoped>
 .home-page {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -41,6 +42,13 @@ export default defineComponent({
 .home-page::after {
   content: "";
   margin-bottom: 100px;
+}
+
+.anchor {
+  position: absolute;
+  user-select: none;
+  top: 0;
+  opacity: 0;
 }
 
 .title {
@@ -81,4 +89,39 @@ h2 {
   flex: 1 1 auto;
 }
 
+@media only screen and (max-width: 1280px) {
+  h1 {
+    font-size: 63px;
+  }
+
+  h2 {
+    font-size: 30px;
+    margin-top: -15px;
+  }
+
+  .zeros {
+    font-size: 12px;
+    margin-top: -5px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .title {
+    margin-top: 5vh;
+  }
+
+  h1 {
+    font-size: 50px;
+  }
+
+  h2 {
+    font-size: 24px;
+    margin-top: -12px;
+  }
+
+  .zeros {
+    font-size: 9px;
+    margin-top: -4px;
+  }
+}
 </style>

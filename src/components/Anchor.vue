@@ -7,7 +7,7 @@
 <script lang="ts">
 import { defineComponent } from "vue"
 
-import { scrollIntoView } from "../utils/view"
+import { scrollIntoView, setHash } from "../utils/view"
 
 export default defineComponent({
   name: "Anchor",
@@ -18,7 +18,7 @@ export default defineComponent({
     click(e: MouseEvent) {
       e.preventDefault()
       const { target } = this.$props
-      scrollIntoView(target)
+      setHash(target, true)
     }
   }
 })

@@ -44,6 +44,7 @@ export default defineComponent({
 .slogan {
   position: absolute;
   width: 28.385%;
+  min-width: 363px;
   height: auto;
   top: 47.778%;
   left: 7.552%
@@ -52,20 +53,25 @@ export default defineComponent({
 .address {
   position: absolute;
   width: 29.479%;
+  min-width: 377px;
   height: auto;
-  top: 75.648%;
+  bottom: 10.5%;
   left: 7.031%
 }
 
-@media only screen and (orientation: landscape) {
+@media only screen and (orientation: landscape) and (min-width: 601px) {
   .background {
     height: 100vh;
     padding-top: 0;
     background-size: auto 100%;
   }
+
+  @media (max-width: 1280px) {
+  }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (orientation: portrait),
+    only screen and (max-width: 600px) {
   .background {
     position: relative;
     background-size: 105% auto;
@@ -78,7 +84,7 @@ export default defineComponent({
 
   .content {
     position: relative;
-    width: 70.5%;
+    width: 80%;
     padding-top: 22.794%;
     margin-top: -5%;
     margin-left: auto;
@@ -87,15 +93,19 @@ export default defineComponent({
 
   .slogan {
     width: 50%;
+    min-width: 50%;
     top: 30%;
     left: 51.5%;
   }
 
   .address {
     width: 100%;
+    min-width: 100%;
     top: 0;
     left: 0;
   }
 }
+/* @media only screen and (max-width: 600px) {
+} */
 
 </style>
