@@ -60,8 +60,7 @@ export default defineComponent({
   justify-content: space-between;
   list-style: none;
   padding: 0;
-  margin: auto;
-  margin-top: 0;
+  margin: 0 auto auto;
   width: 100%;
   max-width: 605px;
 }
@@ -74,12 +73,24 @@ export default defineComponent({
 
 .schedule-item:nth-child(odd) {
   margin-bottom: 96px;
+}
+
+.schedule-item:nth-child(odd) > .item-card {
   flex-direction: row-reverse;
 }
 
 .schedule-item:nth-child(even) {
   margin-top: 96px;
+}
+
+.schedule-item:nth-child(even) > .item-card {
   flex-direction: row;
+}
+
+@media only screen and (max-width: 768px) {
+  .schedule-list {
+    max-width: 485px;
+  }
 }
 
 @media only screen and (max-width: 600px) {
@@ -93,16 +104,28 @@ export default defineComponent({
     margin-right: auto;
   }
 
-  .schedule-item:nth-child(odd), .schedule-item:nth-child(even) {
-    flex-direction: row;
+  .schedule-item:nth-child(odd),
+  .schedule-item:nth-child(even) {
     margin-top: 36px;
     margin-bottom: 0;
   }
 
-  .schedule-item > div {
-    margin: auto;
+  .schedule-item:nth-child(odd) > .item-card,
+  .schedule-item:nth-child(even) > .item-card {
+    flex-direction: row;
   }
 }
+</style>
+<style>
+.schedule-item .item-card > div {
+  min-width: 211px;
+}
 
-
+@media only screen and (max-width: 600px) {
+  .schedule-item .item-card > div {
+    min-width: 168px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
 </style>

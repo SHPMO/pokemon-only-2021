@@ -51,8 +51,28 @@ html, body {
   font-family: "Alata", "Noto Sans SC", sans-serif;
 }
 
+a {
+  text-decoration: none;
+}
+
 #app-pmo2021 {
   position: relative;
   width: 100%;
+}
+
+.hide {
+  display: none !important;
+}
+
+.blue {
+  color: #3999d6;
+}
+
+.red {
+  color: #d31751;
+}
+
+.gray {
+  color: #808080;
 }
 </style>

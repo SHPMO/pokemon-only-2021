@@ -142,7 +142,6 @@ export default defineComponent({
   margin-left: auto;
   margin-right: auto;
   margin-top: 6px;
-  text-decoration: none;
 }
 
 .nav > a > span {

@@ -5,9 +5,9 @@
     </div>
     <Title />
     <Schedule />
-    <!--
     <Location />
     <Tickets />
+    <!--
     <Prizes />
     <Events />
     <Booths />
@@ -18,8 +18,11 @@
 <script lang="ts">
 import { defineComponent } from "vue"
 
-import Schedule from "./home/Schedule.vue"
 import Title from "./home/Title.vue"
+import Schedule from "./home/Schedule.vue"
+import Location from "./home/Location.vue"
+import Tickets from "./home/Tickets.vue"
+
 import { isLandscapeOrientation, scrollIntoView, setHash, setTitle } from "../utils/view"
 
 let anchors: HTMLAnchorElement[] | null = null
@@ -28,8 +31,10 @@ let previousTop = -1
 export default defineComponent({
   name: "Home",
   components: {
+    Title,
     Schedule,
-    Title
+    Location,
+    Tickets
   },
   data() {
     return {

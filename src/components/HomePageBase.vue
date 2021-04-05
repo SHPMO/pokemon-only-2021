@@ -2,7 +2,9 @@
   <div class="home-page">
     <a class="anchor" :name="name" :title="title.zh" />
     <div class="title">
-      <h1>{{ title.en }}</h1>
+      <h1>
+        <span v-for="c in title.en">{{ c }}</span>
+      </h1>
       <h2>{{ title.zh }}</h2>
       <div class="zeros">#000</div>
     </div>
@@ -57,23 +59,27 @@ export default defineComponent({
   margin-left: auto;
   margin-right: auto;
   flex: 0 0 auto;
+  width: 100%;
+  max-width: 605px;
 }
 
 h1 {
-  display: block;
   text-transform: uppercase;
   font-size: 100px;
   color: #d31751;
   font-weight: lighter;
   margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 h2 {
   font-size: 48px;
   color: #040000;
   font-weight: lighter;
-  margin: 0;
-  margin-top: -24px;
+  margin: -24px 0 0;
 }
 
 .zeros {
@@ -81,8 +87,7 @@ h2 {
   color: #040000;
   letter-spacing: 4px;
   font-weight: lighter;
-  margin: 0;
-  margin-top: -8px;
+  margin: -8px 0 0;
 }
 
 .content {
@@ -90,6 +95,10 @@ h2 {
 }
 
 @media only screen and (max-width: 1280px) {
+  .title {
+    width: auto;
+  }
+
   h1 {
     font-size: 63px;
   }

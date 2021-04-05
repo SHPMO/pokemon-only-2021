@@ -1,20 +1,22 @@
 <template>
   <div class="item-card">
-    <div class="upper">
-      <div class="number" :style="{ color: themeColor }">{{ number }}</div>
-      <div>
-        <div class="zeros">#000</div>
-        <div class="name">{{ name }}</div>
+    <div>
+      <div class="upper">
+        <div class="number" :style="{ color: themeColor }">{{ number }}</div>
+        <div class="upper-right">
+          <div class="zeros">#000</div>
+          <div class="name">{{ name }}</div>
+        </div>
       </div>
+      <div class="content">
+        <slot />
+      </div>
+      <div class="middle">
+        <div class="delimiter" :style="{ borderColor: themeColor }" />
+        <div v-if="helpText" class="help-text">{{ helpText }}</div>
+      </div>
+      <div v-if="time" class="time">{{ time }}</div>
     </div>
-    <div class="content">
-      <slot />
-    </div>
-    <div class="middle">
-      <div class="delimiter" :style="{ borderColor: themeColor }" />
-      <div :v-if="helpText" class="helpText">{{ helpText }}</div>
-    </div>
-    <div :v-if="time" class="time">{{ time }}</div>
   </div>
 </template>
 
@@ -41,19 +43,24 @@ export default defineComponent({
 
 <style scoped>
 .item-card {
-  display: block;
-  min-width: 211px;
+  display: flex;
+}
+
+.item-card > div {
   width: 80%;
 }
 
 .upper {
   display: flex;
-  flex-wrap: wrap;
   width: 100%;
 }
 
+.upper-right {
+  margin-left: 10px;
+}
+
 .number {
-  width: 100px;
+  min-width: 90px;
   height: 58px;
   font-size: 60px;
   line-height: 58px;
@@ -94,6 +101,7 @@ export default defineComponent({
 
 .middle {
   height: 44px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -106,7 +114,7 @@ export default defineComponent({
   flex: 0 1 auto;
 }
 
-.helpText {
+.help-text {
   flex: 0 1 auto;
   display: block;
   height: 15px;
@@ -129,9 +137,10 @@ export default defineComponent({
   color: #ffffff;
 }
 
-@media only screen and (max-width: 768px) { /* and (min-width: 601px) { */
+@media only screen and (max-width: 768px) {
+  /* and (min-width: 601px) { */
   .number {
-    width: 80px;
+    min-width: 80px;
     height: 46px;
     line-height: 46px;
     font-size: 48px;
@@ -163,7 +172,7 @@ export default defineComponent({
     height: 28px;
   }
 
-  .helpText {
+  .help-text {
     height: 12px;
     line-height: 12px;
     font-size: 12px;
@@ -174,12 +183,7 @@ export default defineComponent({
     height: 20px;
     line-height: 20px;
     font-size: 17px;
-  }
-}
-
-@media only screen and (max-width: 600px) {
-  .item-card {
-    min-width: 168px;
+    width: 100%;
   }
 }
 </style>

@@ -68,7 +68,6 @@ export default defineComponent({
   height: 18px;
   line-height: 18px;
   font-size: 14px;
-  text-decoration: none;
   color: #ffffff;
 }
 
