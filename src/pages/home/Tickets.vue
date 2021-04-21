@@ -23,7 +23,7 @@
             </div>
             <div class="ticket-link">
               <span>门票限量 888 张（含 VIP）</span>
-              <a href="." target="_blank">
+              <a :href="purchasingLink" target="_blank" rel="noreferrer">
                 <img src="../../assets/tickets/cart.png" alt="" />
                 <span>点击购入</span>
               </a>
@@ -43,7 +43,7 @@
             </div>
             <div class="ticket-link">
               <span>门票限量 888 张（含 VIP）</span>
-              <a href="." target="_blank">
+              <a :href="purchasingLink" target="_blank" rel="noreferrer">
                 <img src="../../assets/tickets/cart.png" alt="" />
                 <span>点击购入</span>
               </a>
@@ -67,7 +67,7 @@
             </div>
             <div class="ticket-link">
               <span>门票限量 888 张（含 VIP）</span>
-              <a href="." target="_blank">
+              <a :href="purchasingLink" target="_blank" rel="noreferrer">
                 <img src="../../assets/tickets/cart.png" alt="" />
                 <span>点击购入</span>
               </a>
@@ -91,7 +91,7 @@
             </div>
             <div class="ticket-link">
               <span>门票限量 888 张（含 VIP）</span>
-              <a href="." target="_blank">
+              <a :href="purchasingLink" target="_blank" rel="noreferrer">
                 <img src="../../assets/tickets/cart.png" alt="" />
                 <span>点击购入</span>
               </a>
@@ -106,15 +106,15 @@
       <li>在收到票后，以《<span class="red">魔都 PMO2021 报名 + 昵称</span>》为邮件名，发送邮件到 <span class="red">nebby@getdaze.org</span>。
       </li>
       <li>邮件中需要包含：门票 ID 号 | 对战券 ID 号 | 门票 + 对战券照片 | 个人昵称 | 个人 QQ 号，以作为报名的验证和方便进行后期通知。</li>
-<!--      <li>另外有少量普通入场票的实体店寄卖<span class="gray">（不设置舞台区入场票和 VIP 入场票）</span></li>-->
+      <!--      <li>另外有少量普通入场票的实体店寄卖<span class="gray">（不设置舞台区入场票和 VIP 入场票）</span></li>-->
       <li>如果网络预售票已售罄，现场将不再售票。</li>
     </ul>
-<!--    <div class="place">-->
-<!--      <ItemCard number="01" name="Metro" theme="red"-->
-<!--                time="上海市黄浦区浙江中路 229 号">-->
-<!--        地铁<span class="red">一号线</span>人民广场站<span><br v-if="width <= 768"></span>百米香榭 212 室 JE 卡牌-->
-<!--      </ItemCard>-->
-<!--    </div>-->
+    <!--    <div class="place">-->
+    <!--      <ItemCard number="01" name="Metro" theme="red"-->
+    <!--                time="上海市黄浦区浙江中路 229 号">-->
+    <!--        地铁<span class="red">一号线</span>人民广场站<span><br v-if="width <= 768"></span>百米香榭 212 室 JE 卡牌-->
+    <!--      </ItemCard>-->
+    <!--    </div>-->
   </HomePageBase>
 </template>
 
@@ -122,13 +122,18 @@
 import HomePageBase from "../../components/HomePageBase.vue"
 import ItemCard from "../../components/ItemCard.vue"
 
+const PurchasingLink = "https://item.taobao.com/item.htm?id=619811759484"
+
 export default {
   name: "Tickets",
   components: {
     ItemCard, HomePageBase
   },
   data() {
-    return { width: window.innerWidth }
+    return {
+      width: window.innerWidth,
+      purchasingLink: PurchasingLink
+    }
   },
   methods: {
     onResize() {
@@ -317,6 +322,7 @@ export default {
     margin-left: auto;
   }
 }
+
 @media only screen and (max-width: 400px) {
   .place > .item-card {
     width: 100%;
