@@ -18,10 +18,11 @@
           </div>
           <div class="ticket-info">
             <div class="ticket-cards">
-              <ItemCard number="50" name="RMB" help-text="预售价格">普通入场票</ItemCard>
-              <ItemCard number="70" name="RMB" help-text="现场价格">普通入场票</ItemCard>
+              <ItemCard number="55" name="RMB" help-text="预售价格">普通入场票</ItemCard>
+              <ItemCard number="75" name="RMB" help-text="现场价格">普通入场票</ItemCard>
             </div>
             <div class="ticket-link">
+              <span>门票限量 888 张（含 VIP）</span>
               <a href="." target="_blank">
                 <img src="../../assets/tickets/cart.png" alt="" />
                 <span>点击购入</span>
@@ -38,9 +39,10 @@
           </div>
           <div class="ticket-info">
             <div class="ticket-cards">
-              <ItemCard number="50" name="RMB" help-text="仅网络贩售 / 每个 ID 最多可拍付 3 份">舞台区入场票</ItemCard>
+              <ItemCard number="55" name="RMB" help-text="仅网络贩售 / 每个 ID 最多可拍付 3 份">舞台区入场票</ItemCard>
             </div>
             <div class="ticket-link">
+              <span>门票限量 888 张（含 VIP）</span>
               <a href="." target="_blank">
                 <img src="../../assets/tickets/cart.png" alt="" />
                 <span>点击购入</span>
@@ -58,12 +60,13 @@
           <div class="ticket-info">
             <div class="ticket-cards">
               <ItemCard
-                  number="120" name="RMB" theme="red"
+                  number="125" name="RMB" theme="red"
                   help-text="仅网络贩售 / 限量 40 份 / 每个 ID 最多可拍付 2 份"
               >VIP 入场票
               </ItemCard>
             </div>
             <div class="ticket-link">
+              <span>门票限量 888 张（含 VIP）</span>
               <a href="." target="_blank">
                 <img src="../../assets/tickets/cart.png" alt="" />
                 <span>点击购入</span>
@@ -83,10 +86,11 @@
               <ItemCard
                   number="5" name="RMB"
                   help-text="单拍不发货 / 同笔订单内对战券数量多于门票数不发货"
-              >VIP 入场票
+              >对战券
               </ItemCard>
             </div>
             <div class="ticket-link">
+              <span>门票限量 888 张（含 VIP）</span>
               <a href="." target="_blank">
                 <img src="../../assets/tickets/cart.png" alt="" />
                 <span>点击购入</span>
@@ -97,18 +101,20 @@
       </div>
     </div>
     <ul class="notes">
+      <li>图片仅为门票示意，并非门票实物，具体门票样式以实物为准。</li>
       <li>需要参加对战区比赛的游客，请在购买门票的同时，将“<span class="red">加购对战券</span>”加入购物车并一起支付。</li>
       <li>在收到票后，以《<span class="red">魔都 PMO2021 报名 + 昵称</span>》为邮件名，发送邮件到 <span class="red">nebby@getdaze.org</span>。
       </li>
       <li>邮件中需要包含：门票 ID 号 | 对战券 ID 号 | 门票 + 对战券照片 | 个人昵称 | 个人 QQ 号，以作为报名的验证和方便进行后期通知。</li>
-      <li>另外有少量普通入场票的实体店寄卖<span class="gray">（不设置舞台区入场票和 VIP 入场票）</span></li>
+<!--      <li>另外有少量普通入场票的实体店寄卖<span class="gray">（不设置舞台区入场票和 VIP 入场票）</span></li>-->
+      <li>如果网络预售票已售罄，现场将不再售票。</li>
     </ul>
-    <div class="place">
-      <ItemCard number="01" name="Metro" theme="red"
-                time="上海市黄浦区浙江中路 229 号">
-        地铁<span class="red">一号线</span>人民广场站<span><br v-if="width <= 768"></span>百米香榭 212 室 JE 卡牌
-      </ItemCard>
-    </div>
+<!--    <div class="place">-->
+<!--      <ItemCard number="01" name="Metro" theme="red"-->
+<!--                time="上海市黄浦区浙江中路 229 号">-->
+<!--        地铁<span class="red">一号线</span>人民广场站<span><br v-if="width <= 768"></span>百米香榭 212 室 JE 卡牌-->
+<!--      </ItemCard>-->
+<!--    </div>-->
   </HomePageBase>
 </template>
 

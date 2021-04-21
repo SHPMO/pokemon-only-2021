@@ -11,14 +11,16 @@
         </ItemCard>
         <div class="booth-image" :style="{backgroundImage: `url(${booth.circle_image})`}" />
       </div>
-      <div class="booth-empty" v-else>暂无摊位</div>
+      <div class="booth-empty" v-else>暂无摊位。</div>
+    </div>
+    <div class="more">
+      <!--        TODO: uncomment these.-->
+      <!--        <router-link to="/booths">摊位一览</router-link>-->
+      <!--        <router-link to="/items">商品一览</router-link>-->
+      <a class="register" href="https://www.getdaze.org/dashboard/register/signupin/" target="_blank">申请入口</a>
     </div>
     <div v-if="booths?.length > 0" class="actions">
-      <div v-if="inHome" class="more">
-        <router-link to="/booths">摊位一览</router-link>
-        <router-link to="/items">商品一览</router-link>
-      </div>
-      <div v-else class="pages">
+      <div v-if="!inHome" class="pages">
         <span class="page">{{ page }}</span> / <span class="page-max">{{ maxPage }}</span>
       </div>
     </div>
@@ -101,11 +103,13 @@ export default defineComponent({
   margin-top: 80px;
   display: flex;
   flex-wrap: wrap;
-  width: 1703px;
+  width: 100%;
+  max-width: 605px;
+  min-height: 248px;
 }
 
 .booth-empty {
-  margin: auto;
+  margin: 0 auto auto;
   font-size: 2rem;
 }
 
@@ -144,5 +148,25 @@ export default defineComponent({
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
+}
+
+.more {
+  width: 100%;
+  max-width: 605px;
+}
+
+.more > a {
+  margin-right: 20px;
+}
+
+.register {
+  color: #d31751;
+}
+
+@media only screen and (max-width: 768px) {
+  .more {
+    width: 80%;
+    max-width: 350px;
+  }
 }
 </style>
