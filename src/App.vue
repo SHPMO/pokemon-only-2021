@@ -44,7 +44,7 @@ export default defineComponent({
 
 html, body {
   margin: 0;
-  width: 100vw;
+  width: 100%;
   color: #030000;
   background-image: url("./assets/background.png");
   background-repeat: repeat;

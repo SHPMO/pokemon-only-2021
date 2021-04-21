@@ -16,6 +16,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue"
+import { setTitle } from "../utils/view"
 
 export default defineComponent({
   name: "HomePageBase",
@@ -28,6 +29,11 @@ export default defineComponent({
       type: Object,
       required: true,
     },
+  },
+  mounted() {
+    if (location.pathname !== "/") {
+      setTitle(this.title.zh)
+    }
   }
 })
 </script>
@@ -72,6 +78,7 @@ h1 {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  font-family: 'Noto Sans SC', serif;
 }
 
 h2 {

@@ -1,24 +1,37 @@
 <template>
-  <a :href="`#${target}`" @click="click">
+  <router-link class="anchor" :to="`/${target}`" @click.prevent="click(target, $event)">
     <slot />
-  </a>
+  </router-link>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue"
 
-import { scrollIntoView, setHash } from "../utils/view"
+import { inHome, setHash } from "../utils/view"
 
 export default defineComponent({
   name: "Anchor",
   props: {
-    target: String
+    target: {
+      type: String,
+      required: true
+    }
   },
   methods: {
-    click(e: MouseEvent) {
+    click(target: string, e: MouseEvent) {
       e.preventDefault()
-      const { target } = this.$props
-      setHash(target, true)
+      if (inHome()) {
+        setHash(target, true)
+      } else {
+        let x = e.target as (HTMLElement | null)
+        while (x !== null) {
+          if (x.tagName.toLowerCase() === "a") {
+            location.href = (x as HTMLAnchorElement).href
+            break
+          }
+          x = x.parentElement
+        }
+      }
     }
   }
 })

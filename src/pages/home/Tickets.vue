@@ -1,5 +1,5 @@
 <template>
-  <HomePageBase name="tickets" :title="{en: 'tickets', zh:'票务信息'}">
+  <HomePageBase name="tickets" :title="{en: 'Tickets', zh:'票务信息'}">
     <!-- TODO: Update time and ticket images -->
     <div class="sale-time hide">
       <ItemCard number="00.00" name="00.00">

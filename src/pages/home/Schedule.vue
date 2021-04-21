@@ -1,39 +1,39 @@
 <template>
   <HomePageBase name="schedule" :title="{en: 'Schedule', zh: '行程安排'}">
-    <ul class="schedule-list">
-      <li class="schedule-item">
+    <div class="schedule-list">
+      <div class="schedule-item">
         <ItemCard number="01" name="Admission" time="08:00">
           摊主开始入场
         </ItemCard>
-      </li>
-      <li class="schedule-item">
+      </div>
+      <div class="schedule-item">
         <ItemCard
             number="02" name="Admission" time="09:31" theme="red"
             helpText="10:30 之前不可离开会场">
           游客开始入场
         </ItemCard>
-      </li>
-      <li class="schedule-item">
+      </div>
+      <div class="schedule-item">
         <ItemCard number="03" name="Battle" time="10:00">
           对战活动开始
         </ItemCard>
-      </li>
-      <li class="schedule-item">
+      </div>
+      <div class="schedule-item">
         <ItemCard number="04" name="Stage" time="11:30" theme="red">
           舞台活动开始
         </ItemCard>
-      </li>
-      <li class="schedule-item">
+      </div>
+      <div class="schedule-item">
         <ItemCard number="05" name="Raffle" time="15:30">
           抽奖活动
         </ItemCard>
-      </li>
-      <li class="schedule-item">
+      </div>
+      <div class="schedule-item">
         <ItemCard number="06" name="Finish" time="16:30" theme="red">
           活动结束
         </ItemCard>
-      </li>
-    </ul>
+      </div>
+    </div>
   </HomePageBase>
 </template>
 
@@ -58,7 +58,6 @@ export default defineComponent({
   flex-direction: row-reverse;
   flex-wrap: wrap;
   justify-content: space-between;
-  list-style: none;
   padding: 0;
   margin: 0 auto auto;
   width: 100%;

@@ -1,5 +1,5 @@
 <template>
-  <HomePageBase name="prizes" :title="{en: 'prizes', zh:'活动奖品'}">
+  <HomePageBase name="prizes" :title="{en: 'Prizes', zh:'活动奖品'}">
     <div class="prize-list">
       <div v-if="prizes?.length > 0" v-for="(prize, index) in prizes" class="prize-item">
         <ItemCard
@@ -118,13 +118,6 @@ export default defineComponent({
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-}
-
-.prize-image > img {
-  width: 100%;
-  height: auto;
-  flex: 0 1 auto;
-  margin: auto;
 }
 
 @media only screen and (max-width: 1720px) {
