@@ -35,7 +35,7 @@ export const mockCache = {
   itemsFetched: {} as { [sellerID: number]: true }
 }
 
-Array(7).fill(0).forEach((_, i) => {
+Array(11).fill(0).forEach((_, i) => {
   const itemIDs = Array(4).fill(0).map((_, j) => {
     const item = Object.assign({}, mockItem)
     const index = i * 4 + j
@@ -49,6 +49,6 @@ Array(7).fill(0).forEach((_, i) => {
   seller.id = i
   seller.circle_name = seller.circle_name.replace("{}", i.toString(10))
   seller.items = itemIDs
-  seller.seller_id = `${ i < 4 ? "A" : "B" }${ (i % 4) + 1 }`
+  seller.seller_id = i < 9 ? `${ i < 4 ? "A" : "B" }${ (i < 4 ? i : i - 4) + 1 }` : ""
   mockCache.sellers[i] = seller
 })

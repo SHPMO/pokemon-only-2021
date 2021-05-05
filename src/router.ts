@@ -7,6 +7,7 @@ import Tickets from "./pages/home/Tickets.vue"
 import Prizes from "./pages/home/Prizes.vue"
 import Events from "./pages/home/Events.vue"
 import Booths from "./pages/booth/Booths.vue"
+import BoothPage from "./pages/booth/BoothPage.vue"
 
 const routes = [
   { path: "/", component: Home },

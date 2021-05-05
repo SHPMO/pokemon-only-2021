@@ -53,6 +53,7 @@ html, body {
 
 a {
   text-decoration: none;
+  color: #030000;
 }
 
 #app-pmo2021 {
