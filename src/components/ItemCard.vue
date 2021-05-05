@@ -13,7 +13,6 @@
       </div>
       <div class="middle">
         <div class="delimiter" :style="{
-          // borderColor: themeColor
           backgroundColor: themeColor
         }" />
         <div v-if="helpText" class="help-text">{{ helpText }}</div>
@@ -35,11 +34,12 @@ export default defineComponent({
     time: String,
     theme: String
   },
-  data() {
-    const theme = this.$props.theme
-    const themeColor = theme === undefined || theme === "blue"
-      ? "#3999d6" : theme === "red" ? "#d21651" : theme
-    return { themeColor }
+  computed: {
+    themeColor(): string {
+      const theme = this.theme
+      return theme === undefined || theme === "blue"
+        ? "#3999d6" : theme === "red" ? "#d21651" : theme
+    }
   }
 })
 </script>

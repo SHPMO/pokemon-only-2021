@@ -52,3 +52,6 @@ Array(11).fill(0).forEach((_, i) => {
   seller.seller_id = i < 9 ? `${ i < 4 ? "A" : "B" }${ (i < 4 ? i : i - 4) + 1 }` : ""
   mockCache.sellers[i] = seller
 })
+
+mockCache.sellers[0].circle_name = "试着写一个很长的一个社团名"
+mockCache.sellers[0].circle_description = "和一段更长的社团介绍。社团介绍社团介绍社团介绍~~~~"

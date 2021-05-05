@@ -8,6 +8,8 @@ import Prizes from "./pages/home/Prizes.vue"
 import Events from "./pages/home/Events.vue"
 import Booths from "./pages/booth/Booths.vue"
 import BoothPage from "./pages/booth/BoothPage.vue"
+import AllItems from "./pages/booth/AllItems.vue"
+import ItemPage from "./pages/booth/ItemPage.vue"
 
 const routes = [
   { path: "/", component: Home },
@@ -17,9 +19,9 @@ const routes = [
   { path: "/prizes", component: Prizes },
   { path: "/events", component: Events },
   { path: "/booths", component: Booths },
-  // { path: "/booths/:id", component: BoothPage },
-  // { path: "/items", component: AllItems },
-  // { path: "/items/:id", component: ItemPage },
+  { path: "/booths/:id(\\d+)", component: BoothPage },
+  { path: "/items", component: AllItems },
+  { path: "/items/:id(\\d+)", component: ItemPage },
 ]
 
 export const BaseURL = "/pmo2021/"

@@ -1,16 +1,25 @@
 <template>
   <HomePageBase name="booths" :title="{en: 'booths', zh:'现场摊位'}">
+    <div class="action-links">
+      <div>
+        <router-link to="/booths">摊位一览</router-link>
+        <router-link to="/items">商品一览</router-link>
+      </div>
+      <div>
+        <a class="register" href="https://www.getdaze.org/dashboard/register/signupin/" target="_blank">申请入口</a>
+      </div>
+    </div>
     <div class="booth-list">
       <router-link
           v-if="booths?.length > 0"
-          v-for="booth in booths"
+          v-for="(booth, i) in booths"
           class="booth-item"
           :to="`/booths/${booth.id}`"
       >
         <ItemCard
             :number="booth.seller_id ? booth.seller_id : '--'"
             name="Booth"
-            :theme="booth.seller_id.startsWith('A') ? 'red' : 'blue'"
+            :theme="getCardColor(booth, i)"
         >
           {{ booth.circle_name }}
         </ItemCard>
@@ -21,31 +30,20 @@
       </router-link>
       <div class="booth-empty" v-else>暂无摊位。</div>
     </div>
-    <div v-if="booths?.length > 0" class="pages">
-      <div v-if="!inHome" class="pages">
-        <a
-            :class="{disabled: page === 0}"
-            :href="page === 0 ? undefined : `?page=${page}`"
-            @click.prevent="updatePage(page - 1)"
-        >上一页</a>
-        <div>
-          <span class="page">{{ page + 1 }}</span> / <span class="page-max">{{ maxPage }}</span>
-        </div>
-        <a
-            :class="{disabled: page === maxPage - 1}"
-            :href="page === maxPage - 1 ? undefined : `?page=${page + 2}`"
-            @click.prevent="updatePage(page + 1)"
-        >下一页</a>
-      </div>
-    </div>
-    <div class="action-links">
+    <div v-if="!inHome && booths?.length > 0" class="pages">
+      <a
+          :class="{disabled: page === 0}"
+          :href="page === 0 ? undefined : `?page=${page}`"
+          @click.prevent="updatePage(page - 1)"
+      >上一页</a>
       <div>
-        <router-link to="/booths">摊位一览</router-link>
-        <router-link to="/items">商品一览</router-link>
+        <span class="page">{{ page + 1 }}</span> / <span class="page-max">{{ maxPage }}</span>
       </div>
-      <div>
-        <a class="register" href="https://www.getdaze.org/dashboard/register/signupin/" target="_blank">申请入口</a>
-      </div>
+      <a
+          :class="{disabled: page === maxPage - 1}"
+          :href="page === maxPage - 1 ? undefined : `?page=${page + 2}`"
+          @click.prevent="updatePage(page + 1)"
+      >下一页</a>
     </div>
   </HomePageBase>
 </template>
@@ -57,10 +55,9 @@ import HomePageBase from "../../components/HomePageBase.vue"
 import ItemCard from "../../components/ItemCard.vue"
 import { getSellers, Seller } from "../../utils/models"
 import { shuffle } from "../../utils/math"
-import { inHome as isInHome } from "../../utils/view"
+import { inHome as isInHome, scrollIntoView } from "../../utils/view"
 
-const perPage = 10
-let booths: Seller[] = []
+const ItemsPerPage = 10
 
 const sortSellers = (sellers: Seller[]): Seller[] => {
   sellers.sort((a, b) => {
@@ -108,7 +105,8 @@ export default defineComponent({
       page: 0,
       maxPage: 0,
       booths: [] as Seller[],
-      public: false
+      public: false,
+      allBooths: [] as Seller[]
     }
   },
   methods: {
@@ -120,10 +118,13 @@ export default defineComponent({
         history.pushState(history.state, document.title, `?page=${ page + 1 }`)
       }
       this.page = page
-      this.booths = booths.slice(
-        page * perPage,
-        (page + 1) * perPage
+      this.booths = this.allBooths.slice(
+        page * ItemsPerPage,
+        (page + 1) * ItemsPerPage
       )
+      if (updateState) {
+        scrollIntoView()
+      }
     },
     onPopState() {
       const params = new URL(location.href).searchParams
@@ -137,23 +138,30 @@ export default defineComponent({
         page -= 1
       }
       this.updatePage(page, false)
+    },
+    getCardColor(booth: Seller, i: number) {
+      return booth.seller_id.startsWith("A")
+        ? "red" : booth.seller_id.startsWith("B") ?
+          "blue" : i % 2 === 0 ? "red" : "blue"
     }
   },
   async mounted() {
-    window.addEventListener("popstate", this.onPopState)
     const sellers = await getSellers()
-    booths = Array.from(Object.values(sellers))
+    const allBooths = Array.from(Object.values(sellers))
     if (this.inHome) {
-      shuffle(booths)
-      this.booths = booths.slice(0, 4)
+      this.allBooths = shuffle(allBooths)
+      this.booths = allBooths.slice(0, 4)
     } else {
-      booths = sortSellers(booths)
-      this.maxPage = Math.ceil(booths.length / perPage)
+      window.addEventListener("popstate", this.onPopState)
+      this.allBooths = sortSellers(allBooths)
+      this.maxPage = Math.ceil(allBooths.length / ItemsPerPage)
       this.onPopState()
     }
   },
   unmounted() {
-    window.removeEventListener("popstate", this.onPopState)
+    if (!this.inHome) {
+      window.removeEventListener("popstate", this.onPopState)
+    }
   }
 })
 </script>
@@ -165,16 +173,17 @@ export default defineComponent({
   flex-wrap: wrap;
   min-height: 248px;
   width: 1200px;
+  margin-bottom: -48px;
 }
 
 .booth-empty {
-  margin: 64px auto auto;
+  margin: 16px auto auto;
   font-size: 2rem;
 }
 
 .booth-item {
   display: flex;
-  margin-top: 64px;
+  margin-bottom: 64px;
 }
 
 .booth-item:nth-child(odd) {
@@ -189,14 +198,19 @@ export default defineComponent({
   flex-direction: row;
 }
 
+.booth-item > .item-card {
+  width: 200px;
+  flex-direction: row;
+}
+
 .booth-item:nth-child(odd) > .item-card {
   margin-left: 40px;
-  margin-right: 0;
+  margin-right: -50px;
 }
 
 .booth-item:nth-child(even) > .item-card {
   margin-left: 0;
-  margin-right: 40px;
+  margin-right: -10px;
 }
 
 .booth-image {
@@ -209,7 +223,7 @@ export default defineComponent({
   background-position: center;
 }
 
-.action-links {
+.pages, .action-links {
   width: 100%;
   max-width: 605px;
   display: flex;
@@ -226,23 +240,13 @@ export default defineComponent({
   color: #d31751;
 }
 
-.pages {
-  width: 100%;
-  max-width: 605px;
-  display: flex;
-  justify-content: space-between;
-  font-size: 24px;
-  margin-top: 16px;
-  user-select: none;
-}
-
 .disabled {
   color: #707070;
   cursor: default;
 }
 
 @media only screen and (max-width: 1280px) {
-  .action-links {
+  .pages, .action-links {
     font-size: 20px;
     max-width: 400px;
   }
@@ -264,12 +268,10 @@ export default defineComponent({
 
   .booth-item:nth-child(odd) > .item-card {
     margin-left: 20px;
-    margin-right: 0;
   }
 
   .booth-item:nth-child(even) > .item-card {
-    margin-left: 0;
-    margin-right: 20px;
+    margin-right: -30px;
   }
 }
 
@@ -283,13 +285,16 @@ export default defineComponent({
     height: 180px;
   }
 
+  .booth-item > .item-card {
+    width: 160px;
+  }
+
   .booth-item:nth-child(odd) > .item-card {
     margin-left: 16px;
-    margin-right: 0;
+    margin-right: -40px;
   }
 
   .booth-item:nth-child(even) > .item-card {
-    margin-left: 0;
     margin-right: 16px;
   }
 }
@@ -306,17 +311,15 @@ export default defineComponent({
 
   .booth-item:nth-child(odd) > .item-card {
     margin-left: 12px;
-    margin-right: 0;
   }
 
   .booth-item:nth-child(even) > .item-card {
-    margin-left: 0;
-    margin-right: 12px;
+    margin-right: -4px;
   }
 }
 
 @media only screen and (max-width: 600px) {
-  .booth-list, .action-links {
+  .booth-list, .pages, .action-links {
     width: 80%;
     min-width: 350px;
   }
@@ -324,6 +327,10 @@ export default defineComponent({
   .booth-image {
     width: 160px;
     height: 160px;
+  }
+
+  .booth-item > .item-card {
+    width: 200px;
   }
 
   .booth-item:nth-child(odd),
@@ -337,6 +344,32 @@ export default defineComponent({
   .booth-item:nth-child(even) > .item-card {
     margin-left: 0;
     margin-right: 12px;
+  }
+}
+</style>
+
+<style>
+
+.booth-item > .item-card > div > .content {
+  height: unset;
+  width: 250px;
+  white-space: unset;
+}
+
+@media only screen and (max-width: 1024px) {
+  .booth-item > .item-card > div > .content {
+    width: 200px;
+  }
+}
+
+/*@media only screen and (max-width: 768px) {*/
+/*  .booth-item > .item-card > div > .content {*/
+/*    width: 150px;*/
+/*  }*/
+/*}*/
+@media only screen and (max-width: 600px) {
+  .booth-item > .item-card > div > .content {
+    width: 250px;
   }
 }
 </style>
