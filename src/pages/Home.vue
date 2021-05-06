@@ -22,7 +22,7 @@ import Location from "./home/Location.vue"
 import Tickets from "./home/Tickets.vue"
 import Prizes from "./home/Prizes.vue"
 import Events from "./home/Events.vue"
-import Booths from "./booth/Booths.vue"
+import Booths from "./booth/BoothPageBase.vue"
 
 import { isLandscapeOrientation, scrollIntoView, setHash, setTitle } from "../utils/view"
 

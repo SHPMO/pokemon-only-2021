@@ -1,8 +1,5 @@
 <template>
-  <HomePageBase name="booths" :title="{en: 'booths', zh:'现场摊位'}">
-    <div class="action-links">
-      <router-link to="/booths">摊位一览</router-link>
-    </div>
+  <BoothPageBase type="booth" :page="page" :max-page="maxPage" :update-page="updatePage">
     <div v-if="booth === null" class="booth-null">
       无此摊位。
     </div>
@@ -26,15 +23,15 @@
         </div>
       </div>
       <div class="items-header">商品列表</div>
-      <ItemList :sellerID="booth.id" />
+      <ItemList :update-states="updateStates" :sellerID="booth.id" />
     </div>
-  </HomePageBase>
+  </BoothPageBase>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue"
 
-import HomePageBase from "../../components/HomePageBase.vue"
+import BoothPageBase from "./BoothPageBase.vue"
 import ItemCard from "../../components/ItemCard.vue"
 import ItemList from "./ItemList.vue"
 
@@ -44,13 +41,34 @@ import { setTitle } from "../../utils/view"
 export default defineComponent({
   name: "BoothPage",
   components: {
-    HomePageBase,
+    BoothPageBase,
     ItemCard,
     ItemList
   },
+  methods: {
+    updatePage(page: number) {
+      if (isNaN(page) || page < 1 || page > this.maxPage) {
+        page = 1
+      }
+      this.page = page
+      if (this.updatePageState !== undefined) {
+        this.updatePageState(page)
+      }
+    },
+    updateStates(maxPage: number, updatePage: (page: number) => void) {
+      this.maxPage = maxPage
+      this.updatePageState = updatePage
+      const query = this.$route.query
+      let page = "page" in query ? parseInt(query.page) : 1
+      this.updatePage(page)
+    }
+  },
   data() {
     return {
-      booth: null as Seller | null
+      booth: null as Seller | null,
+      page: 0,
+      maxPage: 0,
+      updatePageState: undefined as undefined | ((page: number) => void)
     }
   },
   async mounted() {
@@ -65,8 +83,7 @@ export default defineComponent({
 
 <style scoped>
 .booth-page {
-  width: 90%;
-  max-width: 1200px;
+  width: 100%;
 }
 
 .items-header {

@@ -1,47 +1,48 @@
 <template>
-  <HomePageBase name="items" :title="{en: 'Items', zh:'商品一览'}">
-    <div class="action-links">
-      <router-link to="/booths">摊位一览</router-link>
-    </div>
-    <ItemList />
-  </HomePageBase>
+  <BoothPageBase type="items" :page="page" :max-page="maxPage" :update-page="updatePage">
+    <ItemList :update-states="updateStates" />
+  </BoothPageBase>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue"
 
-import { getItem, Item } from "../../utils/models"
-import HomePageBase from "../../components/HomePageBase.vue"
+import BoothPageBase from "./BoothPageBase.vue"
 import ItemList from "./ItemList.vue"
 
 export default defineComponent({
   name: "AllItems",
   components: {
     ItemList,
-    HomePageBase
+    BoothPageBase
+  },
+  methods: {
+    updatePage(page: number) {
+      if (isNaN(page) || page < 1 || page > this.maxPage) {
+        page = 1
+      }
+      this.page = page
+      if (this.updatePageState !== undefined) {
+        this.updatePageState(page)
+      }
+    },
+    updateStates(maxPage: number, updatePage: (page: number) => void) {
+      this.maxPage = maxPage
+      this.updatePageState = updatePage
+      const query = this.$route.query
+      let page = "page" in query ? parseInt(query.page) : 1
+      this.updatePage(page)
+    }
+  },
+  data() {
+    return {
+      page: 0,
+      maxPage: 0,
+      updatePageState: undefined as undefined | ((page: number) => void)
+    }
   }
 })
 </script>
 
 <style scoped>
-.action-links {
-  width: 100%;
-  max-width: 605px;
-  font-size: 24px;
-  margin-top: 16px;
-}
-
-@media only screen and (max-width: 1280px) {
-  .action-links {
-    font-size: 20px;
-    max-width: 400px;
-  }
-}
-
-@media only screen and (max-width: 600px) {
-  .action-links {
-    width: 80%;
-    min-width: 350px;
-  }
-}
 </style>

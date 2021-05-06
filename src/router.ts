@@ -18,10 +18,10 @@ const routes = [
   { path: "/tickets", component: Tickets },
   { path: "/prizes", component: Prizes },
   { path: "/events", component: Events },
-  { path: "/booths", component: Booths },
-  { path: "/booths/:id(\\d+)", component: BoothPage },
-  { path: "/items", component: AllItems },
-  { path: "/items/:id(\\d+)", component: ItemPage },
+  { name: "booths", path: "/booths", component: Booths },
+  { name: "booth", path: "/booths/:id(\\d+)", component: BoothPage },
+  { name: "items", path: "/items", component: AllItems },
+  { name: "item", path: "/items/:id(\\d+)", component: ItemPage },
 ]
 
 export const BaseURL = "/pmo2021/"

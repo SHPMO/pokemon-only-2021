@@ -39,7 +39,7 @@ export default defineComponent({
 @font-face {
   font-family: "Noto Sans SC";
   src: local("Noto Sans SC"), url("./assets/fonts/NotoSansHans-DemiLight.otf");
-  font-weight: lighter;
+  font-weight: 100 300;
 }
 
 html, body {
@@ -54,6 +54,10 @@ html, body {
 a {
   text-decoration: none;
   color: #030000;
+}
+
+a:hover {
+  color: #3999d6;
 }
 
 #app-pmo2021 {

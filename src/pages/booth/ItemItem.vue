@@ -49,13 +49,14 @@ export default defineComponent({
 .item-item {
   display: flex;
   flex-direction: row;
-  margin: 32px auto auto;
+  margin: 16px;
+  width: 360px;
 }
 
 .item-image {
   display: flex;
-  width: 300px;
-  height: 300px;
+  width: 215px;
+  height: 215px;
   background-color: #cbcbcb;
   background-repeat: no-repeat;
   background-size: contain;
@@ -68,7 +69,7 @@ export default defineComponent({
 }
 
 .item-info {
-  margin-left: 40px;
+  margin-left: 16px;
 }
 
 @media only screen and (max-width: 600px) {
