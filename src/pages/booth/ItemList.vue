@@ -72,7 +72,7 @@ export default defineComponent({
 }
 
 .item-list-empty {
-  margin: auto;
+  margin: 80px auto auto;
   font-size: 2rem;
 }
 </style>

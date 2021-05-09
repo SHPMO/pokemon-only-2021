@@ -84,6 +84,11 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.item-null {
+  margin: 80px auto auto;
+  font-size: 2rem;
+}
+
 .item-name {
   font-weight: bold;
   font-size: 2rem;

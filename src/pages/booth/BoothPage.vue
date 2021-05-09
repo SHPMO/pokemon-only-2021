@@ -80,6 +80,11 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.booth-null {
+  margin: 80px auto auto;
+  font-size: 2rem;
+}
+
 .booth-page {
   width: 100%;
 }

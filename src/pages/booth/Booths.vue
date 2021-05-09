@@ -14,7 +14,7 @@
           </router-link>
         </ItemCard>
         <router-link :to="`/booths/${booth.id}`">
-          <ImageView class="booth-image" :src="booth.circle_image" disabled/>
+          <ImageView class="booth-image" :src="booth.circle_image" disabled />
         </router-link>
       </div>
     </div>
@@ -128,7 +128,7 @@ export default defineComponent({
 }
 
 .booth-empty {
-  margin: auto;
+  margin: 80px auto auto;
   font-size: 2rem;
 }
 
