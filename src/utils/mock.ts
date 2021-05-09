@@ -55,3 +55,4 @@ Array(11).fill(0).forEach((_, i) => {
 
 mockCache.sellers[0].circle_name = "试着写一个很长的一个社团名"
 mockCache.sellers[0].circle_description = "和一段更长的社团介绍。社团介绍社团介绍社团介绍~~~~"
+mockCache.items[0].item_pictures = ["", "", "", "", ""]

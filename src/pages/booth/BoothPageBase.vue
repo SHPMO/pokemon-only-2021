@@ -2,7 +2,7 @@
   <HomePageBase
       :name="isSeller ? 'booths' : 'items'"
       :title="{
-          en: isSeller ? 'booths' : 'items',
+          en: isSeller ? 'booths' : 'goods',
           zh: isSeller ? '现场摊位' : '商品一览'
       }">
     <div class="action-links">
@@ -43,7 +43,7 @@
 import { defineComponent, PropType } from "vue"
 
 import HomePageBase from "../../components/HomePageBase.vue"
-import { scrollIntoView } from "../../utils/view"
+import { getQueryPage, scrollIntoView } from "../../utils/view"
 
 const PageTypes = [ "booths", "booth", "items", "item" ] as const
 type PageType = typeof PageTypes[number]
@@ -55,14 +55,21 @@ export default defineComponent({
   },
   props: {
     updatePage: {
-      type: Function as PropType<(page: number) => void>
+      type: Function as PropType<(page: number) => void>,
+      default: () => void 0
     },
     page: {
       type: Number,
       default: 0
     },
-    maxPage: Number,
-    type: String as PropType<PageType>
+    maxPage: {
+      type: Number,
+      default: 0
+    },
+    type: {
+      type: String as PropType<PageType>,
+      default: "booths"
+    }
   },
   methods: {
     updatePageState(page: number, updateState = true) {
@@ -78,11 +85,7 @@ export default defineComponent({
       }
     },
     onPopState() {
-      const query = this.$route.query
-      let page = "page" in query ? parseInt(query.page) : 1
-      if (isNaN(page) || page < 1 || page > this.maxPage) {
-        page = 1
-      }
+      const page = getQueryPage(this.$route, this.maxPage)
       this.updatePageState(page, false)
     },
   },
@@ -131,6 +134,7 @@ export default defineComponent({
 .booth-container {
   margin-top: 16px;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   min-height: 248px;
   width: 1200px;

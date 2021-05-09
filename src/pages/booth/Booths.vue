@@ -32,7 +32,7 @@ import HomePageBase from "../../components/HomePageBase.vue"
 import ItemCard from "../../components/ItemCard.vue"
 import { getSellers, Seller } from "../../utils/models"
 import { shuffle } from "../../utils/math"
-import { inHome as isInHome } from "../../utils/view"
+import { getQueryPage, inHome as isInHome, scrollIntoView } from "../../utils/view"
 import BoothPageBase from "./BoothPageBase.vue"
 
 const ItemsPerPage = 10
@@ -111,12 +111,9 @@ export default defineComponent({
     } else {
       this.allBooths = sortSellers(allBooths)
       this.maxPage = Math.ceil(allBooths.length / ItemsPerPage)
-      const query = this.$route.query
-      let page = "page" in query ? parseInt(query.page) : 1
-      if (isNaN(page) || page < 1 || page > this.maxPage) {
-        page = 1
-      }
+      const page = getQueryPage(this.$route, this.maxPage)
       this.updatePage(page)
+      scrollIntoView()
     }
   },
 })
@@ -129,7 +126,6 @@ export default defineComponent({
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  align-items: center;
 }
 
 .booth-empty {
@@ -251,9 +247,8 @@ export default defineComponent({
 
   .booth-item:nth-child(odd),
   .booth-item:nth-child(even) {
-    margin-left: auto;
-    margin-right: auto;
     flex-direction: row;
+    margin: 12px auto 12px;
   }
 
   .booth-item:nth-child(odd) > .item-card,

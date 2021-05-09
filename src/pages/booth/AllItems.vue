@@ -9,6 +9,7 @@ import { defineComponent } from "vue"
 
 import BoothPageBase from "./BoothPageBase.vue"
 import ItemList from "./ItemList.vue"
+import { getQueryPage } from "../../utils/view"
 
 export default defineComponent({
   name: "AllItems",
@@ -29,8 +30,7 @@ export default defineComponent({
     updateStates(maxPage: number, updatePage: (page: number) => void) {
       this.maxPage = maxPage
       this.updatePageState = updatePage
-      const query = this.$route.query
-      let page = "page" in query ? parseInt(query.page) : 1
+      const page = getQueryPage(this.$route, this.maxPage)
       this.updatePage(page)
     }
   },

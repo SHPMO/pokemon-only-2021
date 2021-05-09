@@ -1,9 +1,5 @@
 <template>
-  <HomePageBase name="item" :title="{en: 'item', zh:'商品信息'}">
-    <div class="action-links">
-      <router-link to="/booths">摊位一览</router-link>
-      <router-link to="/items">商品一览</router-link>
-    </div>
+  <BoothPageBase type="item">
     <div v-if="item === null" class="item-null">
       无此商品。
     </div>
@@ -18,9 +14,12 @@
         <div class="item-content">内容：{{ item.content }}</div>
         <div class="item-price">价格：{{ item.price }} 元</div>
         <div class="item-url">链接：{{ item.url }}</div>
-        <router-link :to="`/booths/${item.seller_id}`" class="item-from">
-          来自：{{ sellerName }}
-        </router-link>
+        <div class="item-from">
+          <span>来自：</span>
+          <router-link :to="`/booths/${item.seller_id}`">
+            {{ sellerName }}
+          </router-link>
+        </div>
       </div>
     </div>
     <div v-if="item !== null" class="item-details">
@@ -33,13 +32,15 @@
     </div>
     <div v-if="item !== null" class="item-images">
       <h2>相关图像</h2>
-      <div
-          class="item-image"
-          v-for="image in item.item_pictures"
-          :style="{backgroundImage: `url(${image})`}"
-      />
+      <div>
+        <div
+            class="item-image"
+            v-for="image in item.item_pictures"
+            :style="{backgroundImage: `url(${image})`}"
+        />
+      </div>
     </div>
-  </HomePageBase>
+  </BoothPageBase>
 </template>
 
 <script lang="ts">
@@ -51,11 +52,12 @@ import ItemList from "./ItemList.vue"
 
 import { getItem, getSeller, Item, Seller } from "../../utils/models"
 import { setTitle } from "../../utils/view"
+import BoothPageBase from "./BoothPageBase.vue"
 
 export default defineComponent({
   name: "BoothPage",
   components: {
-    HomePageBase,
+    BoothPageBase,
     ItemCard,
     ItemList
   },
@@ -88,14 +90,40 @@ export default defineComponent({
   font-size: 2rem;
 }
 
-.item-info, .item-images {
-  width: 90%;
-  max-width: 1200px;
+.item-info {
+  width: 100%;
   display: flex;
   margin: 16px auto auto;
   justify-content: center;
   flex-wrap: wrap;
+  font-size: 1.5rem;
 }
+
+.item-images {
+  width: 100%;
+}
+
+.item-images > h2 {
+  font-size: 2.5rem;
+}
+
+.item-images > div {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+/*.item-info, .item-images {*/
+/*  width: 90%;*/
+/*  max-width: 1200px;*/
+/*  display: flex;*/
+/*  margin: 16px auto auto;*/
+/*  justify-content: center;*/
+/*  flex-wrap: wrap;*/
+/*  font-size: 1.5rem;*/
+/*}*/
 
 .item-cover {
   display: flex;
@@ -119,42 +147,57 @@ export default defineComponent({
 }
 
 .item-image {
-  width: 300px;
-  height: 300px;
+  margin: 16px;
+  width: 268px;
+  height: 268px;
+  background-color: #cbcbcb;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
 }
 
-.action-links, .item-details {
+.item-details {
   width: 100%;
   max-width: 605px;
-  font-size: 24px;
-  margin-top: 16px;
+  font-size: 1.5rem;
+  margin: 16px auto auto;
 }
 
 .action-links > a {
   margin-right: 20px;
 }
 
-@media only screen and (max-width: 1280px) {
-  .action-links, .item-details {
-    font-size: 20px;
-    max-width: 400px;
+@media only screen and (max-width: 1240px) {
+  .item-image {
+    width: 218px;
+    height: 218px;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .item-image {
+    width: 216px;
+    height: 216px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .item-image {
+    margin: 8px;
+    width: 184px;
+    height: 184px;
   }
 }
 
 @media only screen and (max-width: 600px) {
-  .action-links, .item-details {
-    width: 80%;
-    min-width: 350px;
-  }
-
   .item-cover {
     width: 300px;
     height: 300px;
   }
 
   .item-image {
-    width: 240px;
-    height: 240px;
+    width: 159px;
+    height: 159px;
   }
 }
 </style>

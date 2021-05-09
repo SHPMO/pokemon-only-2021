@@ -30,7 +30,8 @@ export default defineComponent({
       type: Function as PropType<(
         maxPage: number,
         updatePage: (page: number) => void
-      ) => void>
+      ) => void>,
+      default: () => void 0
     }
   },
   data() {

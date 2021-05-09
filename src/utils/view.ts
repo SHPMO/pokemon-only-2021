@@ -1,4 +1,5 @@
 import { BaseURL } from "../router"
+import { RouteLocationNormalizedLoaded } from "vue-router"
 
 export const scrollIntoView = (name?: string | null, smooth = true) => {
   const target = name ? document.querySelector(`[name=${ name }]`) : document.documentElement
@@ -32,3 +33,11 @@ export const isLandscapeOrientation = () => {
 }
 
 export const inHome = () => location.pathname === BaseURL
+
+export const getQueryPage = (
+  route: RouteLocationNormalizedLoaded, maxPage: number
+): number => {
+  const query = route.query
+  const page = "page" in query && query.page !== null ? parseInt(query.page as string) : 1
+  return isNaN(page) || page < 1 || page > maxPage ? 1 : page
+}

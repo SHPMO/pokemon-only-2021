@@ -36,7 +36,7 @@ import ItemCard from "../../components/ItemCard.vue"
 import ItemList from "./ItemList.vue"
 
 import { getSeller, Seller } from "../../utils/models"
-import { setTitle } from "../../utils/view"
+import { getQueryPage, setTitle } from "../../utils/view"
 
 export default defineComponent({
   name: "BoothPage",
@@ -58,8 +58,7 @@ export default defineComponent({
     updateStates(maxPage: number, updatePage: (page: number) => void) {
       this.maxPage = maxPage
       this.updatePageState = updatePage
-      const query = this.$route.query
-      let page = "page" in query ? parseInt(query.page) : 1
+      const page = getQueryPage(this.$route, this.maxPage)
       this.updatePage(page)
     }
   },
