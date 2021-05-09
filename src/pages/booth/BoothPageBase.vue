@@ -21,7 +21,7 @@
     <div class="booth-container">
       <slot />
     </div>
-    <div v-if="page > 0" class="pages">
+    <div v-if="maxPage > 0" class="pages">
       <a
           :class="{disabled: page <= 1}"
           :href="page <= 1 ? undefined : `?page=${page-1}`"

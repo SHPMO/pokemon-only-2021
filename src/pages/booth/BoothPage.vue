@@ -5,10 +5,7 @@
     </div>
     <div v-else class="booth-page">
       <div class="booth-info">
-        <div
-            class="booth-image"
-            :style="{backgroundImage: `url(${booth.circle_image})`}"
-        />
+        <ImageView class="booth-image" :src="booth.circle_image" />
         <div class="booth-info-right">
           <ItemCard
               :number="booth.seller_id ? booth.seller_id : '--'"
@@ -37,10 +34,12 @@ import ItemList from "./ItemList.vue"
 
 import { getSeller, Seller } from "../../utils/models"
 import { getQueryPage, setTitle } from "../../utils/view"
+import ImageView from "../../components/ImageView.vue"
 
 export default defineComponent({
   name: "BoothPage",
   components: {
+    ImageView,
     BoothPageBase,
     ItemCard,
     ItemList
@@ -87,8 +86,7 @@ export default defineComponent({
 
 .items-header {
   font-weight: bold;
-  font-size: 24px;
-  text-align: center;
+  font-size: 2.5rem;
 }
 
 .booth-info {
@@ -102,12 +100,7 @@ export default defineComponent({
   display: flex;
   width: 360px;
   height: 360px;
-  background-color: #cbcbcb;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  margin-right: 40px;
-  margin-bottom: 32px;
+  margin: 0 40px 32px;
 }
 
 .booth-info-right {

@@ -70,4 +70,9 @@ export default defineComponent({
   justify-content: flex-start;
   align-items: center;
 }
+
+.item-list-empty {
+  margin: auto;
+  font-size: 2rem;
+}
 </style>

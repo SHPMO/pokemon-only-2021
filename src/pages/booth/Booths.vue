@@ -14,10 +14,7 @@
           </router-link>
         </ItemCard>
         <router-link :to="`/booths/${booth.id}`">
-          <div
-              class="booth-image"
-              :style="{backgroundImage: `url(${booth.circle_image})`}"
-          />
+          <ImageView class="booth-image" :src="booth.circle_image" disabled/>
         </router-link>
       </div>
     </div>
@@ -34,6 +31,7 @@ import { getSellers, Seller } from "../../utils/models"
 import { shuffle } from "../../utils/math"
 import { getQueryPage, inHome as isInHome, scrollIntoView } from "../../utils/view"
 import BoothPageBase from "./BoothPageBase.vue"
+import ImageView from "../../components/ImageView.vue"
 
 const ItemsPerPage = 10
 
@@ -73,6 +71,7 @@ const sortSellers = (sellers: Seller[]): Seller[] => {
 export default defineComponent({
   name: "Booths",
   components: {
+    ImageView,
     BoothPageBase,
     HomePageBase,
     ItemCard
@@ -129,7 +128,7 @@ export default defineComponent({
 }
 
 .booth-empty {
-  margin: 16px auto auto;
+  margin: auto;
   font-size: 2rem;
 }
 
@@ -169,10 +168,6 @@ export default defineComponent({
   display: flex;
   width: 360px;
   height: 360px;
-  background-color: #cbcbcb;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
 }
 
 .booth-name {

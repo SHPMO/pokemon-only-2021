@@ -1,9 +1,9 @@
 <template>
   <div v-if="item !== null" class="item-item">
-    <router-link
-        class="item-image"
-        :style="{backgroundImage:`url(${item.cover_image})`}"
-        :to="`/items/${item.item_id}`" />
+    <router-link :to="`/items/${item.item_id}`">
+      <ImageView class="item-image" :src="item.cover_image" disabled />
+    </router-link>
+
     <div class="item-info">
       <router-link class="item-name" :to="`/items/${item.item_id}`">{{ item.name }}</router-link>
       <div class="item-price">价格：{{ item.price }} 元</div>
@@ -17,9 +17,11 @@
 import { defineComponent } from "vue"
 
 import { getItem, Item } from "../../utils/models"
+import ImageView from "../../components/ImageView.vue"
 
 export default defineComponent({
   name: "ItemItem",
+  components: { ImageView },
   props: {
     id: {
       type: Number,
@@ -59,10 +61,6 @@ export default defineComponent({
   display: flex;
   width: 215px;
   height: 215px;
-  background-color: #cbcbcb;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
 }
 
 .item-name {

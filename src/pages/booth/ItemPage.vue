@@ -4,10 +4,7 @@
       无此商品。
     </div>
     <div v-if="item !== null" class="item-info">
-      <div
-          class="item-cover"
-          :style="{backgroundImage: `url(${item.cover_image})`}"
-      />
+      <ImageView class="item-cover" :src="item.cover_image" />
       <div class="item-info-right">
         <div class="item-name">{{ item.name }}</div>
         <div class="item-type">种类：{{ item.item_type }}</div>
@@ -33,10 +30,10 @@
     <div v-if="item !== null" class="item-images">
       <h2>相关图像</h2>
       <div>
-        <div
+        <ImageView
             class="item-image"
             v-for="image in item.item_pictures"
-            :style="{backgroundImage: `url(${image})`}"
+            :src="image"
         />
       </div>
     </div>
@@ -53,10 +50,12 @@ import ItemList from "./ItemList.vue"
 import { getItem, getSeller, Item, Seller } from "../../utils/models"
 import { setTitle } from "../../utils/view"
 import BoothPageBase from "./BoothPageBase.vue"
+import ImageView from "../../components/ImageView.vue"
 
 export default defineComponent({
   name: "BoothPage",
   components: {
+    ImageView,
     BoothPageBase,
     ItemCard,
     ItemList
@@ -115,16 +114,6 @@ export default defineComponent({
   align-items: center;
 }
 
-/*.item-info, .item-images {*/
-/*  width: 90%;*/
-/*  max-width: 1200px;*/
-/*  display: flex;*/
-/*  margin: 16px auto auto;*/
-/*  justify-content: center;*/
-/*  flex-wrap: wrap;*/
-/*  font-size: 1.5rem;*/
-/*}*/
-
 .item-cover {
   display: flex;
   width: 360px;
@@ -150,10 +139,6 @@ export default defineComponent({
   margin: 16px;
   width: 268px;
   height: 268px;
-  background-color: #cbcbcb;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
 }
 
 .item-details {
@@ -163,8 +148,8 @@ export default defineComponent({
   margin: 16px auto auto;
 }
 
-.action-links > a {
-  margin-right: 20px;
+.item-from > a {
+  color: #d31751;
 }
 
 @media only screen and (max-width: 1240px) {

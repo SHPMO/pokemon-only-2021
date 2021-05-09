@@ -10,7 +10,7 @@
         >
           {{ prize.content }}
         </ItemCard>
-        <div class="prize-image" :style="{backgroundImage: `url(${prize.image})`}" />
+        <ImageView class="prize-image" :src="prize.image" />
       </div>
       <div class="prize-empty" v-else>待更新。</div>
     </div>
@@ -21,6 +21,7 @@
 import { defineComponent } from "vue"
 import HomePageBase from "../../components/HomePageBase.vue"
 import ItemCard from "../../components/ItemCard.vue"
+import ImageView from "../../components/ImageView.vue"
 
 // import image from "../../assets/header/logo.png"
 const image = ""
@@ -58,6 +59,7 @@ const prizes: Prize[] = []
 export default defineComponent({
   name: "Prizes",
   components: {
+    ImageView,
     HomePageBase,
     ItemCard
   },
@@ -114,10 +116,6 @@ export default defineComponent({
   display: flex;
   width: 509px;
   height: 318px;
-  background-color: #cbcbcb;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
 }
 
 @media only screen and (max-width: 1720px) {

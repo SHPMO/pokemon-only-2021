@@ -1,8 +1,5 @@
-import { mockCache } from "./mock"
-
 const apiURL = "https://www.getdaze.org/stall/api"
 const pmo = "pmo2021"
-// const pmo = "pmo2019"
 
 export interface Seller {
   id: number
@@ -39,14 +36,13 @@ export type Items = {
   [id: number]: Item
 }
 
-const cached = mockCache
-// const cached = {
-//   sellers: {} as Sellers,
-//   items: {} as Items,
-//   allSellersFetched: false,
-//   allItemsFetched: false,
-//   itemsFetched: {} as { [sellerID: number]: true }
-// }
+const cached = {
+  sellers: {} as Sellers,
+  items: {} as Items,
+  allSellersFetched: false,
+  allItemsFetched: false,
+  itemsFetched: {} as { [sellerID: number]: true }
+}
 
 const requestAPI = async <T>(name: string, data: {
   [key: string]: string | number | undefined
