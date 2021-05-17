@@ -48,7 +48,7 @@ const requestAPI = async <T>(name: string, data: {
   [key: string]: string | number | undefined
 } = {}): Promise<T | null> => {
   try {
-    data[pmo] = pmo
+    data.pmo = pmo
     const response = await fetch(`${ apiURL }/${ name }?${
       Object.keys(data)
         .filter((key) => data[key] !== undefined)

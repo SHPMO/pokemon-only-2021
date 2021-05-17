@@ -1,5 +1,5 @@
 <template>
-  <HomePageBase class="page-events" name="events" :title="{en: 'events', zh:'活动安排'}">
+  <HomePageBase :class="{'page-events-home': inHome}" class="page-events" name="events" :title="{en: 'events', zh:'活动安排'}">
     <div class="event-list">
       <div v-if="events?.length > 0" v-for="(event, index) in events" class="event-item">
         <ItemCard
@@ -22,6 +22,7 @@
 import { defineComponent } from "vue"
 import HomePageBase from "../../components/HomePageBase.vue"
 import ItemCard from "../../components/ItemCard.vue"
+import { inHome } from "../../utils/view"
 
 interface PMOEvent {
   name?: string
@@ -40,16 +41,20 @@ export default defineComponent({
   },
   data() {
     return {
-      events
+      events,
+      inHome: inHome()
     }
   }
 })
 </script>
 
 <style scoped>
-.page-events {
+.page-events-home {
   background: #000000;
   color: #ffffff;
+}
+
+.page-events {
 }
 
 .event-list {
@@ -168,8 +173,8 @@ export default defineComponent({
 </style>
 
 <style>
-.page-events > .title > h2,
-.page-events > .title > .zeros {
+.page-events-home > .title > h2,
+.page-events-home > .title > .zeros {
   color: #ffffff;
 }
 

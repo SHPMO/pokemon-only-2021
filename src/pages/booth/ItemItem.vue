@@ -54,7 +54,7 @@ export default defineComponent({
   margin: 16px;
   width: 368px;
   height: 215px;
-  overflow-y: hidden;
+  overflow: hidden;
 }
 
 .item-image {

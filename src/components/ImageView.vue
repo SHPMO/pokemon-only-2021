@@ -19,24 +19,28 @@ export default defineComponent({
   props: {
     src: {
       type: String,
-      required: true
+      default: ""
     },
     disabled: {
       type: Boolean,
       default: false
     }
   },
-  data() {
-    let imageURL = this.src.trim()
-    let enabled = !this.disabled
-    if (imageURL === "") {
-      imageURL = DefaultImage
-      enabled = false
+  computed: {
+    imageURL(): string {
+      let image = this.src === null ? "" : this.src.trim()
+      if (image === "") {
+        image = DefaultImage
+        this.enabled = false
+      }
+      return image
     }
+  },
+  data() {
+    let enabled = !this.disabled
     return {
       enabled,
-      showing: false,
-      imageURL,
+      showing: false
     }
   },
   methods: {
