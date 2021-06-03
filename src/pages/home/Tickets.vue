@@ -12,74 +12,57 @@
     <div class="ticket-list">
       <div class="ticket-item ticket-normal">
         <div class="ticket-item-main">
-          <div class="ticket-image">
-            <img src="../../assets/tickets/ticket-sample.png" alt="" />
-            <div class="ticket-content">含入场票*1 + 入场特典*1</div>
+          <div class="ticket-image-container">
+            <a :href="purchasingLink" target="_blank" rel="noreferrer" />
+            <img class="ticket-image" :src="images.normal" alt="">
           </div>
           <div class="ticket-info">
             <div class="ticket-cards">
-              <ItemCard number="55" name="RMB" help-text="预售价格">普通入场票</ItemCard>
-              <ItemCard number="75" name="RMB" help-text="现场价格">普通入场票</ItemCard>
+              <ItemCard :href="purchasingLink" number="55" name="RMB" help-text="预售价格">普通入场票</ItemCard>
+              <ItemCard :href="purchasingLink" number="75" name="RMB" help-text="现场价格">普通入场票</ItemCard>
             </div>
-            <div class="ticket-link">
-              <span>门票限量 888 张（含 VIP）</span>
-              <a :href="purchasingLink" target="_blank" rel="noreferrer">
-                <img src="../../assets/tickets/cart.png" alt="" />
-                <span>点击购入</span>
-              </a>
-            </div>
+            <div class="ticket-content">含入场票*1 + 入场特典*1（颜色随机）</div>
           </div>
         </div>
       </div>
       <div class="ticket-item ticket-stage">
         <div class="ticket-item-main">
-          <div class="ticket-image">
-            <img src="../../assets/tickets/ticket-sample.png" alt="" />
+          <div class="ticket-image-container">
+            <a :href="purchasingLink" target="_blank" rel="noreferrer" />
+            <img class="ticket-image" :src="images.normal" alt="">
+          </div>
+          <div class="ticket-info">
+            <div class="ticket-cards">
+              <ItemCard :href="purchasingLink" number="55" name="RMB" help-text="仅网络贩售 / 每个 ID 最多可拍付 3 份">舞台区入场票
+              </ItemCard>
+            </div>
             <div class="ticket-content">含入场票*1 + 入场特典*1 + 舞台区座位整理券*1</div>
           </div>
-          <div class="ticket-info">
-            <div class="ticket-cards">
-              <ItemCard number="55" name="RMB" help-text="仅网络贩售 / 每个 ID 最多可拍付 3 份">舞台区入场票</ItemCard>
-            </div>
-            <div class="ticket-link">
-              <span>门票限量 888 张（含 VIP）</span>
-              <a :href="purchasingLink" target="_blank" rel="noreferrer">
-                <img src="../../assets/tickets/cart.png" alt="" />
-                <span>点击购入</span>
-              </a>
-            </div>
-          </div>
         </div>
       </div>
-      <div class="ticket-item ticket-stage">
+      <div class="ticket-item ticket-vip">
         <div class="ticket-item-main">
-          <div class="ticket-image">
-            <img src="../../assets/tickets/ticket-sample.png" alt="" />
-            <div class="ticket-content">含入场票*1 + 提前入场资格 + VIP入场特典 + 舞台区前两排固定座位整理券*1</div>
+          <div class="ticket-image-container">
+            <a :href="purchasingLink" target="_blank" rel="noreferrer" />
+            <img class="ticket-image" :src="images.vip" alt="">
           </div>
           <div class="ticket-info">
             <div class="ticket-cards">
               <ItemCard
+                  :href="purchasingLink"
                   number="125" name="RMB" theme="red"
                   help-text="仅网络贩售 / 限量 40 份 / 每个 ID 最多可拍付 2 份"
               >VIP 入场票
               </ItemCard>
             </div>
-            <div class="ticket-link">
-              <span>门票限量 888 张（含 VIP）</span>
-              <a :href="purchasingLink" target="_blank" rel="noreferrer">
-                <img src="../../assets/tickets/cart.png" alt="" />
-                <span>点击购入</span>
-              </a>
-            </div>
+            <div class="ticket-content">含入场票*1 + 提前入场资格 + VIP入场特典 + 舞台区前两排固定座位整理券*1</div>
           </div>
         </div>
       </div>
-      <div class="ticket-item ticket-stage">
+      <div class="ticket-item ticket-battle">
         <div class="ticket-item-main">
-          <div class="ticket-image">
-            <img src="../../assets/tickets/ticket-sample.png" alt="" />
-            <div class="ticket-content">现场对战区比赛资格*1</div>
+          <div class="ticket-image-container">
+            <!--            <img class="ticket-image" src="" alt="">-->
           </div>
           <div class="ticket-info">
             <div class="ticket-cards">
@@ -89,13 +72,7 @@
               >对战券
               </ItemCard>
             </div>
-            <div class="ticket-link">
-              <span>门票限量 888 张（含 VIP）</span>
-              <a :href="purchasingLink" target="_blank" rel="noreferrer">
-                <img src="../../assets/tickets/cart.png" alt="" />
-                <span>点击购入</span>
-              </a>
-            </div>
+            <div class="ticket-content">现场对战区比赛资格*1</div>
           </div>
         </div>
       </div>
@@ -121,18 +98,27 @@
 <script>
 import HomePageBase from "../../components/HomePageBase.vue"
 import ItemCard from "../../components/ItemCard.vue"
+import ImageView from "../../components/ImageView.vue"
+
+import TicketNormalImage from "../../assets/tickets/ticket-normal.png"
+import TicketVIPImage from "../../assets/tickets/ticket-vip.png"
 
 const PurchasingLink = "https://item.taobao.com/item.htm?id=619811759484"
 
 export default {
   name: "Tickets",
   components: {
+    ImageView,
     ItemCard, HomePageBase
   },
   data() {
     return {
       width: window.innerWidth,
-      purchasingLink: PurchasingLink
+      purchasingLink: PurchasingLink,
+      images: {
+        normal: TicketNormalImage,
+        vip: TicketVIPImage
+      }
     }
   },
   methods: {
@@ -168,7 +154,7 @@ export default {
 
 .ticket-item {
   width: 100%;
-  margin-top: 32px;
+  margin-top: 128px;
 }
 
 .ticket-item:nth-child(1) {
@@ -181,18 +167,56 @@ export default {
   justify-content: space-between;
 }
 
-.ticket-image {
-  width: 672px;
+.ticket-image-container {
+  width: 586px;
+  height: 204px;
+  position: relative;
 }
 
-.ticket-image > img {
+.ticket-image-container > a {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: auto;
+  height: 100%;
+  z-index: 1;
+}
+
+.ticket-image {
+  position: absolute;
+  background-color: transparent;
+  background-size: unset;
+  left: -9px;
+  top: -34px;
+  height: 452px;
+  width: auto;
+}
+
+.ticket-vip .ticket-image {
+  left: -15px;
+}
+
+.ticket-battle .ticket-image-container {
+  display: none;
+}
+
+.ticket-battle .ticket-info {
+  margin-top: 0;
+}
+
+.ticket-content {
+  font-family: "Noto Sans SC", sans-serif;
+  font-size: 21px;
+  font-weight: bold;
+  color: #808080;
+  margin-top: 24px;
 }
 
 .ticket-info {
-  margin-left: 88px;
-  flex: 1 1 auto;
+  margin-left: auto;
+  margin-right: 0;
+  width: 450px;
+  flex: 0 1 auto;
 }
 
 .ticket-cards {
@@ -220,13 +244,6 @@ export default {
   flex-direction: row-reverse;
 }
 
-.ticket-content {
-  font-family: "Noto Sans SC", sans-serif;
-  font-size: 15px;
-  color: #808080;
-  font-weight: bold;
-}
-
 .notes {
   margin-left: auto;
   margin-right: auto;
@@ -249,7 +266,6 @@ export default {
   margin-left: auto;
   margin-right: auto;
   margin-top: 32px;
-  /*width: 1200px;*/
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -265,26 +281,30 @@ export default {
     width: 672px;
   }
 
+  .ticket-item {
+    margin-top: 32px;
+  }
+
   .ticket-item-main {
     flex-direction: column;
     align-items: center;
   }
 
   .ticket-info {
-    width: 100%;
-    margin-left: 0;
-    margin-top: 32px;
-    display: flex;
+    width: 586px;
+    margin: 112px 0 0;
+  }
+
+  .ticket-cards {
     justify-content: space-between;
-    align-items: flex-end;
   }
 
   .ticket-link {
     margin-left: 16px;
   }
 
-  .ticket-image {
-    width: 100%;
+  .ticket-image-container {
+    /*width: 100%;*/
   }
 }
 
@@ -298,6 +318,42 @@ export default {
   .ticket-list, .notes, .place {
     width: 80%;
     min-width: 350px;
+  }
+}
+
+@media only screen and (max-width: 680px) {
+  .ticket-list {
+    margin-top: 0;
+  }
+
+  .ticket-info {
+    width: 100%;
+    margin-top: -56px;
+  }
+
+  .ticket-image-container {
+    min-width: 350px;
+    width: 100%;
+    height: 0;
+    padding-top: 77%;
+  }
+
+  .ticket-image {
+    height: auto;
+    width: 100%;
+    transform: scale(1.08);
+    transform-origin: 11% 0;
+    left: 0;
+    top: 0;
+  }
+
+  .ticket-vip .ticket-image {
+    left: 0;
+    transform: scale(1.06);
+  }
+
+  .ticket-content {
+    font-size: 18px;
   }
 }
 
@@ -323,6 +379,12 @@ export default {
   }
 }
 
+@media only screen and (max-width: 420px) {
+  .ticket-image-container {
+    overflow-x: hidden;
+  }
+}
+
 @media only screen and (max-width: 400px) {
   .place > .item-card {
     width: 100%;
@@ -339,7 +401,7 @@ export default {
   opacity: 0;
 }
 
-.ticket-stage .item-card > div {
+.ticket-stage .item-card > a {
   width: 100%;
 }
 
@@ -360,7 +422,8 @@ export default {
 }
 
 @media only screen and (max-width: 600px) {
-  .sale-time .item-card > div {
+
+  .sale-time .item-card > a {
     margin-left: auto;
     margin-right: auto;
   }

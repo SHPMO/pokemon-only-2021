@@ -1,6 +1,6 @@
 <template>
   <div class="item-card">
-    <div>
+    <a :href="href" target="_blank" rel="noreferrer" @click="(e) => href ? {} : e.preventDefault()">
       <div class="upper">
         <div class="number" :style="{ color: themeColor }">{{ number }}</div>
         <div class="upper-right">
@@ -18,7 +18,7 @@
         <div v-if="helpText" class="help-text">{{ helpText }}</div>
       </div>
       <div v-if="time" class="time">{{ time }}</div>
-    </div>
+    </a>
   </div>
 </template>
 
@@ -32,7 +32,8 @@ export default defineComponent({
     name: String,
     helpText: String,
     time: String,
-    theme: String
+    theme: String,
+    href: String
   },
   computed: {
     themeColor(): string {
@@ -49,7 +50,7 @@ export default defineComponent({
   display: flex;
 }
 
-.item-card > div {
+.item-card > a {
   width: 80%;
 }
 
