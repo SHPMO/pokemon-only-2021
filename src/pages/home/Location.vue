@@ -79,6 +79,7 @@ export default {
   margin-top: 32px;
   width: 100%;
   max-width: 605px;
+  overflow-x: hidden;
 }
 
 .info > .item-card {

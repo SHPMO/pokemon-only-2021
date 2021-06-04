@@ -1,6 +1,10 @@
 <template>
   <div class="item-card">
-    <a :href="href" target="_blank" rel="noreferrer" @click="(e) => href ? {} : e.preventDefault()">
+    <a :href="href"
+       :target="newTab ? '_blank' : undefined"
+       :rel="noReferrer ? 'noreferrer' : undefined"
+       @click="(e) => href ? {} : e.preventDefault()"
+    >
       <div class="upper">
         <div class="number" :style="{ color: themeColor }">{{ number }}</div>
         <div class="upper-right">
@@ -16,8 +20,9 @@
           backgroundColor: themeColor
         }" />
         <div v-if="helpText" class="help-text">{{ helpText }}</div>
+        <div v-if="timeInMiddle && time" class="time">{{ time }}</div>
       </div>
-      <div v-if="time" class="time">{{ time }}</div>
+      <div v-if="!timeInMiddle && time" class="time">{{ time }}</div>
     </a>
   </div>
 </template>
@@ -32,8 +37,20 @@ export default defineComponent({
     name: String,
     helpText: String,
     time: String,
+    timeInMiddle: {
+      type: Boolean,
+      default: false
+    },
     theme: String,
-    href: String
+    href: String,
+    newTab: {
+      type: Boolean,
+      default: true
+    },
+    noReferrer: {
+      type: Boolean,
+      default: true
+    },
   },
   computed: {
     themeColor(): string {
@@ -51,6 +68,7 @@ export default defineComponent({
 }
 
 .item-card > a {
+  display: block;
   width: 80%;
 }
 
@@ -144,6 +162,13 @@ export default defineComponent({
   background: #000000;
   text-align: center;
   color: #ffffff;
+}
+
+.middle > .time {
+  width: auto;
+  margin-top: 0;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 @media only screen and (max-width: 768px) {
