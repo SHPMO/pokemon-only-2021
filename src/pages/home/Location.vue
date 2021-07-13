@@ -79,26 +79,13 @@ export default {
   margin-top: 32px;
   width: 100%;
   max-width: 605px;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 .info > .item-card {
   flex-direction: column;
   align-items: center;
 }
-
-/*@media only screen and (max-width: 1280px) {*/
-/*  .info > .item-card {*/
-/*    flex-direction: column;*/
-/*    align-items: center;*/
-/*  }*/
-/*}*/
-
-/*@media only screen and (max-width: 768px) {*/
-/*  .info {*/
-/*    align-items: center;*/
-/*  }*/
-/*}*/
 
 @media only screen and (max-width: 600px) {
   .map-container {

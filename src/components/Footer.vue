@@ -1,7 +1,6 @@
 <template>
   <footer id="footer">
     <img class="logo" src="../assets/footer/logo.png" alt="">
-    <!-- TODO -->
     <ul class="links">
       <li class="link">
         <a href="https://www.weibo.com/SHPMO" target="_blank">
