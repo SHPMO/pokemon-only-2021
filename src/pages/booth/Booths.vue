@@ -255,20 +255,21 @@ export default defineComponent({
 </style>
 
 <style>
-.booth-item > .item-card > div > .content {
+.booth-item > .item-card > a > .content {
   height: unset;
   width: 250px;
   white-space: unset;
+  line-height: 48px;
 }
 
 @media only screen and (max-width: 1024px) {
-  .booth-item > .item-card > div > .content {
+  .booth-item > .item-card > a > .content {
     width: 200px;
   }
 }
 
 @media only screen and (max-width: 600px) {
-  .booth-item > .item-card > div > .content {
+  .booth-item > .item-card > a > .content {
     width: 250px;
   }
 }
