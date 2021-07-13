@@ -53,7 +53,7 @@
 
 <!--<Tickets />-->
 <!--<Prizes />-->
-<!--<Events />-->
+<!--<events />-->
 <!--<Booths />-->
 
 <script lang="ts">

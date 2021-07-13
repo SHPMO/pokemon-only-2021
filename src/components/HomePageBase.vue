@@ -16,7 +16,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue"
-import { setTitle } from "../utils/view"
+import { inHome, setTitle } from "../utils/view"
 
 export default defineComponent({
   name: "HomePageBase",
@@ -31,7 +31,7 @@ export default defineComponent({
     },
   },
   mounted() {
-    if (location.pathname !== "/") {
+    if (!inHome()) {
       setTitle(this.title.zh)
     }
   }

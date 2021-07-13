@@ -5,12 +5,12 @@ import Schedule from "./pages/home/Schedule.vue"
 import Location from "./pages/home/Location.vue"
 import Tickets from "./pages/home/Tickets.vue"
 import Prizes from "./pages/home/Prizes.vue"
-import Events from "./pages/Events/Events.vue"
+import Events from "./pages/events/Events.vue"
 import Booths from "./pages/booth/Booths.vue"
 import BoothPage from "./pages/booth/BoothPage.vue"
 import AllItems from "./pages/booth/AllItems.vue"
 import ItemPage from "./pages/booth/ItemPage.vue"
-import Battle from "./pages/Events/Battle.vue"
+import Battle from "./pages/events/Battle.vue"
 
 const routes = [
   { path: "/", component: Home },

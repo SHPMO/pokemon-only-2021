@@ -83,15 +83,9 @@
       <li>在收到票后，以《<span class="red">魔都 PMO2021 报名 + 昵称</span>》为邮件名，发送邮件到 <span class="red">nebby@getdaze.org</span>。
       </li>
       <li>邮件中需要包含：门票 ID 号 | 对战券 ID 号 | 门票 + 对战券照片 | 个人昵称 | 个人 QQ 号，以作为报名的验证和方便进行后期通知。</li>
-      <!--      <li>另外有少量普通入场票的实体店寄卖<span class="gray">（不设置舞台区入场票和 VIP 入场票）</span></li>-->
-      <li>如果网络预售票已售罄，现场将不再售票。</li>
+      <li><span class="notes-strike">如果网络预售票已售罄，现场将不再售票。</span>实体票贩售完毕后，<span class="red">增加不限量单次出入凭证（40 RMB）</span>。</li>
+      <li>因疫情防控等原因，<span class="red">未持有实体票</span>的补票游客，仅限 11:30 后入场，请合理安排到场时间。</li>
     </ul>
-    <!--    <div class="place">-->
-    <!--      <ItemCard number="01" name="Metro" theme="red"-->
-    <!--                time="上海市黄浦区浙江中路 229 号">-->
-    <!--        地铁<span class="red">一号线</span>人民广场站<span><br v-if="width <= 768"></span>百米香榭 212 室 JE 卡牌-->
-    <!--      </ItemCard>-->
-    <!--    </div>-->
   </HomePageBase>
 </template>
 
@@ -260,6 +254,10 @@ export default {
   transform: scale(0.4, 1);
   color: #d31751;
   padding-right: 6px;
+}
+
+.notes-strike {
+  text-decoration: line-through;
 }
 
 .place {

@@ -62,6 +62,7 @@ export default defineComponent({
   mounted() {
     window.addEventListener("scroll", this.onScroll)
     setHash(location.hash.slice(1), true, false)
+    this.onScroll()
   },
   unmounted() {
     window.removeEventListener("scroll", this.onScroll)

@@ -18,7 +18,7 @@ import Schedule from "./home/Schedule.vue"
 import Location from "./home/Location.vue"
 import Tickets from "./home/Tickets.vue"
 import Prizes from "./home/Prizes.vue"
-import Events from "./Events/Events.vue"
+import Events from "./events/Events.vue"
 import Booths from "./booth/Booths.vue"
 
 
